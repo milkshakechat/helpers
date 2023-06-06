@@ -34,9 +34,6 @@ export type WishlistID = string & {
 export type StickerID = string & {
   readonly _: unique symbol;
 };
-export type CreatorSaleRecordID = string & {
-  readonly _: unique symbol;
-};
 export type OwnedStickerID = string & {
   readonly _: unique symbol;
 };
@@ -46,10 +43,13 @@ export type CookieBatchID = string & {
 export type GiftCardID = string & {
   readonly _: unique symbol;
 };
-export type PurchaseRecordID = string & {
+export type StickerSaleID = string & {
   readonly _: unique symbol;
 };
-export type CookieTransactionID = string & {
+export type TransactionID = string & {
+  readonly _: unique symbol;
+};
+export type JournalEntryID = string & {
   readonly _: unique symbol;
 };
 
