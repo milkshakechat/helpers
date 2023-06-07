@@ -18,6 +18,8 @@ export interface Wallet_Firestore {
   title: string;
   createdAt: TimestampFirestore;
   note: string;
+  cookieBalance: number;
+  assumedRealValueUSDBalance: number;
 }
 
 export enum TransactionType {
@@ -65,6 +67,7 @@ export interface JournalEntry {
   transactionID: TransactionID; // index
   walletID: WalletID; // index
   cookieQuantityDelta: number;
+  realValueUSDDelta: number;
   note: string;
   createdAt: TimestampFirestore;
 }
