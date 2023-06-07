@@ -37,10 +37,10 @@ export type StickerID = string & {
 export type OwnedStickerID = string & {
   readonly _: unique symbol;
 };
-export type CookieBatchID = string & {
+export type CookieSaleID = string & {
   readonly _: unique symbol;
 };
-export type GiftCardID = string & {
+export type GiftCardSaleID = string & {
   readonly _: unique symbol;
 };
 export type StickerSaleID = string & {
