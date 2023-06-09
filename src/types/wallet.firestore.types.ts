@@ -26,6 +26,12 @@ export enum TransactionType {
   COOKIE = "COOKIE",
   STICKER = "STICKER",
   GIFT_CARD = "GIFT_CARD",
+  REFUND = "REFUND",
+}
+
+export enum TransactionStatus {
+  SUCCESS = "SUCCESS",
+  FAILURE = "FAILURE",
 }
 
 export interface Transaction {
@@ -38,6 +44,7 @@ export interface Transaction {
   realValueUSD: number;
   note: string;
   type: TransactionType;
+  status: TransactionStatus;
   createdAt: TimestampFirestore;
   metadata: TransactionMetadata;
 }
@@ -59,6 +66,11 @@ export interface TransactionMetadata {
     redeemerID?: UserID;
     isValid?: boolean;
     promoCode?: string;
+  };
+  refundMetadata?: {
+    refundTransactionID: TransactionID;
+    customerComplaint: string;
+    note: string;
   };
 }
 

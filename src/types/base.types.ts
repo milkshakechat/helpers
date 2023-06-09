@@ -52,6 +52,9 @@ export type TransactionID = string & {
 export type JournalEntryID = string & {
   readonly _: unique symbol;
 };
+export type ChannelID = string & {
+  readonly _: unique symbol;
+};
 
 export type EmailString = string;
 
@@ -61,7 +64,10 @@ export enum StoryAttachmentType {
   LINK = "LINK",
 }
 
-export { Timestamp as TimestampFirestore } from "firebase/firestore";
+import * as admin from "firebase-admin";
+export type TimestampFirestore =
+  | admin.firestore.FieldValue
+  | admin.firestore.Timestamp;
 
 export const placeholderVideoThumbnail =
   "https://firebasestorage.googleapis.com/v0/b/superlore-dev.appspot.com/o/defaults%2Fvideo-thumbnail.png?alt=media";

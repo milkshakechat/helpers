@@ -7,18 +7,20 @@ import {
   FriendRequestID,
 } from "./base.types";
 
-export interface UserAccount_Firestore {
+export interface User_Firestore {
   id: UserID; // index
   username: string; // index
   displayName: string;
   bio: string;
   email: string;
+  phone: string;
   isCreator: boolean;
-  mainWalletID: WalletID;
-  sendBirdInternalUserID: sendBirdInternalUserID;
+  mainWalletID?: WalletID;
+  sendBirdInternalUserID?: sendBirdInternalUserID;
   createdAt: TimestampFirestore;
   isPaidChat: boolean;
-  isPaidChatUntil: TimestampFirestore;
+  isPaidChatUntil?: TimestampFirestore;
+  disabled: boolean;
 }
 
 export interface Friendship_Firestore {
