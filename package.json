@@ -1,6 +1,6 @@
 {
   "name": "@milkshakechat/helpers",
-  "version": "1.0.3",
+  "version": "1.0.8",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
@@ -93,6 +93,7 @@
     "fill-range": "^7.0.1",
     "find-up": "^5.0.0",
     "firebase": "^9.22.1",
+    "firebase-admin": "^11.9.0",
     "flat-cache": "^3.0.4",
     "flatted": "^3.2.7",
     "for-each": "^0.3.3",

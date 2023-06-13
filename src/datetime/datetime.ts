@@ -1,7 +1,7 @@
-import { Timestamp } from "firebase/firestore";
+import * as admin from "firebase-admin";
 
 export const createFirestoreTimestamp = (date?: Date) => {
   const targetDate = date || new Date();
-  const timestamp = Timestamp.fromDate(targetDate);
+  const timestamp = admin.firestore.Timestamp.fromDate(targetDate);
   return timestamp;
 };
