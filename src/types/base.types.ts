@@ -69,6 +69,10 @@ export type TimestampFirestore =
   | admin.firestore.FieldValue
   | admin.firestore.Timestamp;
 
+export enum FirestoreCollection {
+  USERS = "users",
+}
+
 export const placeholderVideoThumbnail =
   "https://firebasestorage.googleapis.com/v0/b/superlore-dev.appspot.com/o/defaults%2Fvideo-thumbnail.png?alt=media";
 
