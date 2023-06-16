@@ -51,11 +51,11 @@ export interface FriendRequest_Firestore {
 
 export enum localeEnum {
   english = "english",
+  vietnamese = "vietnamese",
   spanish = "spanish",
   chinese = "chinese",
-  arabic = "arabic",
   thai = "thai",
-  vietnamese = "vietnamese",
+  // arabic = "arabic",
   // japanese = "japanese",
   // korean = "korean",
   // russian = "russian",
