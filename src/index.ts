@@ -4,6 +4,7 @@ export * from "./types/base.types";
 export * from "./types/user.firestore.types";
 export * from "./types/wallet.firestore.types";
 export * from "./utils/username";
+export * from "./utils/privacy";
 
 export const sayHello = () => {
   console.log("hi");
