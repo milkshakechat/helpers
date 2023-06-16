@@ -1,6 +1,6 @@
 {
   "name": "@milkshakechat/helpers",
-  "version": "1.0.9",
+  "version": "1.0.12",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",

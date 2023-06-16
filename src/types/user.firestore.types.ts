@@ -14,6 +14,8 @@ export interface User_Firestore {
   bio: string;
   email: string;
   phone: string;
+  avatar: string;
+  link: string;
   isCreator: boolean;
   mainWalletID?: WalletID;
   sendBirdInternalUserID?: sendBirdInternalUserID;
