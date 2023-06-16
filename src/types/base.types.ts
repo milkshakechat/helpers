@@ -58,16 +58,16 @@ export type ChannelID = string & {
 
 export type EmailString = string;
 
+export type ThemeColorHex = string;
+
 export enum StoryAttachmentType {
   IMAGE = "IMAGE",
   VIDEO = "VIDEO",
   LINK = "LINK",
 }
 
-import * as admin from "firebase-admin";
-export type TimestampFirestore =
-  | admin.firestore.FieldValue
-  | admin.firestore.Timestamp;
+import { FieldValue, Timestamp } from "firebase-admin/firestore";
+export type TimestampFirestore = FieldValue | Timestamp;
 
 export enum FirestoreCollection {
   USERS = "users",
