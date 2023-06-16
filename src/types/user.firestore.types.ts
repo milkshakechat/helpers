@@ -5,6 +5,7 @@ import {
   TimestampFirestore,
   FriendshipID,
   FriendRequestID,
+  ThemeColorHex,
 } from "./base.types";
 
 export interface User_Firestore {
@@ -23,6 +24,11 @@ export interface User_Firestore {
   isPaidChat: boolean;
   isPaidChatUntil?: TimestampFirestore;
   disabled: boolean;
+  privacyMode: privacyModeEnum;
+  themeColor: ThemeColorHex;
+  language: localeEnum;
+  gender: genderEnum;
+  usernameLastUpdated: TimestampFirestore;
 }
 
 export interface Friendship_Firestore {
@@ -42,3 +48,29 @@ export interface FriendRequest_Firestore {
   utmAttribution?: string;
   hasBeenAccepted: boolean;
 }
+
+export enum localeEnum {
+  english = "english",
+  spanish = "spanish",
+  chinese = "chinese",
+  arabic = "arabic",
+  thai = "thai",
+  vietnamese = "vietnamese",
+  // japanese = "japanese",
+  // korean = "korean",
+  // russian = "russian",
+}
+
+export enum genderEnum {
+  male = "male",
+  female = "female",
+  other = "other",
+}
+
+export enum privacyModeEnum {
+  public = "public",
+  private = "private",
+  hidden = "hidden",
+}
+
+export const defaultThemeColorHex = "#2EB8F6" as ThemeColorHex;
