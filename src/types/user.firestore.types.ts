@@ -53,11 +53,11 @@ export enum localeEnum {
   english = "english",
   japanese = "japanese",
   spanish = "spanish",
+  arabic = "arabic",
   korean = "korean",
   chinese = "chinese",
   thai = "thai",
   vietnamese = "vietnamese",
-  // arabic = "arabic",
   // russian = "russian",
 }
 
