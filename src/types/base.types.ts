@@ -55,6 +55,9 @@ export type JournalEntryID = string & {
 export type ChannelID = string & {
   readonly _: unique symbol;
 };
+export type PushTokenID = string & {
+  readonly _: unique symbol;
+};
 
 export type EmailString = string;
 
@@ -71,6 +74,7 @@ export type TimestampFirestore = FieldValue | Timestamp;
 
 export enum FirestoreCollection {
   USERS = "users",
+  PUSH_TOKENS = "pushTokens",
 }
 
 export const placeholderVideoThumbnail =
