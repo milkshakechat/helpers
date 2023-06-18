@@ -1,5 +1,7 @@
 import {
   NotificationID,
+  NotificationTopicID,
+  PushMessageRecieptID,
   PushTokenID,
   TimestampFirestore,
   UserID,
@@ -7,12 +9,16 @@ import {
 
 export interface Notification_Firestore {
   id: NotificationID; // index
-  message: string;
-  thumbnail: string;
   recipientID: UserID; // index
+  title: string;
+  body?: string;
+  image?: string;
+  route?: string; // route to navigate to when clicked
+  topic?: NotificationTopicID; // topic that was subscribed to
   metadataNote: string; // internal message only, about the origin of this notification
-  isPushNotification: boolean; // not all notifications will go to push
   createdAt: TimestampFirestore;
+  markedRead: boolean; // set to true when user clicks on notification or views it
+  pushMessageRecieptIDs?: PushMessageRecieptID[]; // returned from firebase push fcm after successful message send. use this to match to historical push notifications
 }
 
 export enum PushPlatformType {
