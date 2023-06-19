@@ -32,7 +32,8 @@ export interface User_Firestore {
 }
 
 export enum FriendshipStatus {
-  REQUESTED = "REQUESTED",
+  SENT_REQUEST = "SENT_REQUEST",
+  GOT_REQUEST = "GOT_REQUEST",
   ACCEPTED = "ACCEPTED",
   DECLINED = "DECLINED",
   BLOCKED = "BLOCKED",
