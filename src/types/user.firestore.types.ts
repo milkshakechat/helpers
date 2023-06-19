@@ -4,13 +4,13 @@ import {
   WalletID,
   TimestampFirestore,
   FriendshipID,
-  FriendRequestID,
   ThemeColorHex,
+  Username,
 } from "./base.types";
 
 export interface User_Firestore {
   id: UserID; // index
-  username: string; // index
+  username: Username; // index
   displayName: string;
   bio: string;
   email: string;
@@ -31,22 +31,24 @@ export interface User_Firestore {
   usernameLastUpdated: TimestampFirestore;
 }
 
+export enum FriendshipStatus {
+  REQUESTED = "REQUESTED",
+  ACCEPTED = "ACCEPTED",
+  DECLINED = "DECLINED",
+  BLOCKED = "BLOCKED",
+  NONE = "NONE",
+}
 export interface Friendship_Firestore {
   id: FriendshipID; // index
   primaryUserID: UserID; // index
   friendID: UserID;
-  nickname: string;
-  hasBlockedFriend: boolean;
-}
-
-export interface FriendRequest_Firestore {
-  id: FriendRequestID; // index
-  initiatorID: UserID;
-  recipientID: UserID; // index
+  friendNickname: string;
   note: string;
   createdAt: TimestampFirestore;
   utmAttribution?: string;
-  hasBeenAccepted: boolean;
+  status: FriendshipStatus;
+  initiatedBy: UserID;
+  requestNonce: number;
 }
 
 export enum localeEnum {

@@ -16,9 +16,6 @@ export type StoryAttachmentID = string & {
 export type FriendshipID = string & {
   readonly _: unique symbol;
 };
-export type FriendRequestID = string & {
-  readonly _: unique symbol;
-};
 export type TeaserMessageID = string & {
   readonly _: unique symbol;
 };
@@ -64,6 +61,9 @@ export type PushMessageRecieptID = string & {
 export type NotificationTopicID = string & {
   readonly _: unique symbol;
 };
+export type Username = string & {
+  readonly _: unique symbol;
+};
 
 export type EmailString = string;
 
@@ -82,6 +82,7 @@ export enum FirestoreCollection {
   USERS = "users",
   PUSH_TOKENS = "pushTokens",
   NOTIFICATIONS = "notifications",
+  FRIENDSHIPS = "friendships",
 }
 
 export const placeholderVideoThumbnail =
