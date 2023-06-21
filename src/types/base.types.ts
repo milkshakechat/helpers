@@ -1,7 +1,7 @@
 export type UserID = string & {
   readonly _: unique symbol;
 };
-export type sendBirdInternalUserID = string & {
+export type SendBirdUserID = string & {
   readonly _: unique symbol;
 };
 export type WalletID = string & {
@@ -49,9 +49,6 @@ export type TransactionID = string & {
 export type JournalEntryID = string & {
   readonly _: unique symbol;
 };
-export type ChannelID = string & {
-  readonly _: unique symbol;
-};
 export type PushTokenID = string & {
   readonly _: unique symbol;
 };
@@ -62,6 +59,12 @@ export type NotificationTopicID = string & {
   readonly _: unique symbol;
 };
 export type Username = string & {
+  readonly _: unique symbol;
+};
+export type ChatRoomID = string & {
+  readonly _: unique symbol;
+};
+export type SendBirdAccessToken = string & {
   readonly _: unique symbol;
 };
 
@@ -83,6 +86,7 @@ export enum FirestoreCollection {
   PUSH_TOKENS = "pushTokens",
   NOTIFICATIONS = "notifications",
   FRIENDSHIPS = "friendships",
+  CHAT_ROOMS = "chatRooms",
 }
 
 export const placeholderVideoThumbnail =

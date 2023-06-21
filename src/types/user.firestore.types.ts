@@ -1,11 +1,12 @@
 import {
   UserID,
-  sendBirdInternalUserID,
+  SendBirdUserID,
   WalletID,
   TimestampFirestore,
   FriendshipID,
   ThemeColorHex,
   Username,
+  SendBirdAccessToken,
 } from "./base.types";
 
 export interface User_Firestore {
@@ -19,7 +20,7 @@ export interface User_Firestore {
   link: string;
   isCreator: boolean;
   mainWalletID?: WalletID;
-  sendBirdInternalUserID?: sendBirdInternalUserID;
+  sendBirdUserID?: SendBirdUserID;
   createdAt: TimestampFirestore;
   isPaidChat: boolean;
   isPaidChatUntil?: TimestampFirestore;
@@ -29,6 +30,7 @@ export interface User_Firestore {
   language: localeEnum;
   gender: genderEnum;
   usernameLastUpdated: TimestampFirestore;
+  sendBirdAccessToken?: SendBirdAccessToken;
 }
 
 export enum FriendshipStatus {

@@ -1,4 +1,5 @@
 import {
+  ChatRoomID,
   NotificationID,
   NotificationTopicID,
   PushMessageRecieptID,
@@ -19,6 +20,7 @@ export interface Notification_Firestore {
   createdAt: TimestampFirestore;
   markedRead: boolean; // set to true when user clicks on notification or views it
   pushMessageRecieptIDs?: PushMessageRecieptID[]; // returned from firebase push fcm after successful message send. use this to match to historical push notifications
+  relatedChatRoomID?: ChatRoomID; // if this notification is related to a chat room
 }
 
 export enum PushPlatformType {
