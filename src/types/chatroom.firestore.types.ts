@@ -25,6 +25,7 @@ export interface ChatRoom_Firestore {
   // it allows us to quickly check in firestore if a chatroom exists between a set of users
   // this uses the userIDs to create a unique csv hash for the chatroom
   firestoreQuickCheckHash?: string;
+  firestoreParticipantSearch?: UserID[];
   sendBirdChannelURL?: SendBirdChannelURL;
   sendBirdChannelType?: SendBirdChannelType;
 }
