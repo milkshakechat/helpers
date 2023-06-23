@@ -1,4 +1,9 @@
-import { ChatRoomID, UserID } from "./base.types";
+import {
+  ChatRoomID,
+  SendBirdMessageID,
+  TimestampFirestore,
+  UserID,
+} from "./base.types";
 
 export enum SendBirdChannelType {
   GROUP = "GROUP",
@@ -26,6 +31,17 @@ export interface ChatRoom_Firestore {
   // this uses the userIDs to create a unique csv hash for the chatroom
   firestoreQuickCheckHash?: string;
   firestoreParticipantSearch?: UserID[];
-  sendBirdChannelURL?: SendBirdChannelURL;
+  // sendbird
+  sendBirdChannelURL?: SendBirdChannelURL; // index
   sendBirdChannelType?: SendBirdChannelType;
+  sendBirdPushNotifConfig?: SendBirdPushNotifConfig;
+}
+
+export interface SendBirdPushNotifConfig {
+  [key: UserID]: SendBirdPushNotifConfig_User;
+}
+
+export interface SendBirdPushNotifConfig_User {
+  snoozeUntil: TimestampFirestore; // timestamp
+  allowPush: boolean;
 }

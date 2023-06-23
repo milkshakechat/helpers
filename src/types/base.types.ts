@@ -67,6 +67,9 @@ export type ChatRoomID = string & {
 export type SendBirdAccessToken = string & {
   readonly _: unique symbol;
 };
+export type SendBirdMessageID = string & {
+  readonly _: unique symbol;
+};
 
 export type EmailString = string;
 
