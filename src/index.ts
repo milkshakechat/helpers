@@ -10,6 +10,7 @@ export * from "./utils/username";
 export * from "./utils/privacy";
 export * from "./media/permissions";
 export * from "./media/social-sharing";
+export * from "./media/media-resized";
 
 export const sayHello = () => {
   console.log("hi");
