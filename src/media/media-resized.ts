@@ -3,7 +3,8 @@ export enum ImageResizeOption {
   "compressed" = "768x768",
 }
 export enum BucketFolderSlug {
-  "avatars" = "avatars",
+  "avatars" = "avatars/",
+  "story_image" = "story/image/",
 }
 
 export function getCompressedMediaUrl(
@@ -13,7 +14,7 @@ export function getCompressedMediaUrl(
 ): string {
   // Extract baseURL until slug (inclusive), filename and query part (if exists)
   let [baseURL, filenameAndQuery] = url.split(
-    `${encodeURIComponent(`${folderSlug}/`)}`
+    `${encodeURIComponent(`${folderSlug}`)}`
   );
   let [filename, query] = filenameAndQuery.split("?");
 

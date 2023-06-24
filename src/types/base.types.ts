@@ -16,9 +16,6 @@ export type StoryAttachmentID = string & {
 export type FriendshipID = string & {
   readonly _: unique symbol;
 };
-export type TeaserMessageID = string & {
-  readonly _: unique symbol;
-};
 export type AudienceGroupID = string & {
   readonly _: unique symbol;
 };
@@ -72,14 +69,9 @@ export type SendBirdMessageID = string & {
 };
 
 export type EmailString = string;
+export type Bucket_File_URL = string;
 
 export type ThemeColorHex = string;
-
-export enum StoryAttachmentType {
-  IMAGE = "IMAGE",
-  VIDEO = "VIDEO",
-  LINK = "LINK",
-}
 
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 export type TimestampFirestore = FieldValue | Timestamp;
@@ -90,6 +82,7 @@ export enum FirestoreCollection {
   NOTIFICATIONS = "notifications",
   FRIENDSHIPS = "friendships",
   CHAT_ROOMS = "chatRooms",
+  STORIES = "stories",
 }
 
 export const placeholderVideoThumbnail =
