@@ -6,6 +6,7 @@ export * from "./types/chatroom.firestore.types";
 export * from "./types/wallet.firestore.types";
 export * from "./types/notification.firestore.types";
 export * from "./types/chatroom.firestore.types";
+export * from "./types/story.firestore.types";
 export * from "./utils/username";
 export * from "./utils/privacy";
 export * from "./media/permissions";
