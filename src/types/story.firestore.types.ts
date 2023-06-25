@@ -43,6 +43,7 @@ export interface Story_Firestore {
   // outbound link to internet (call to action)
   outboundLink?: string;
   // metadata
+  processingComplete: boolean;
   createdAt: TimestampFirestore;
   deleted: boolean;
 }
