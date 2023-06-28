@@ -71,7 +71,7 @@ export enum StoryAttachmentType {
   VIDEO = "VIDEO",
 }
 
-export type HLS_Stream_Manifest_URL = string; // https://storage.googleapis.com/bucket-name/path/to/video/manifest.mpd
+export type HLS_Stream_Manifest_URL = string; // https://storage.googleapis.com/bucket-name/path/to/video/manifest.m3u8
 
 // This can be refactored into a push notification
 // export interface TeaserMessage_Firestore {

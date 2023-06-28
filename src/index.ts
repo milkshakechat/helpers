@@ -7,12 +7,13 @@ export * from "./types/wallet.firestore.types";
 export * from "./types/notification.firestore.types";
 export * from "./types/chatroom.firestore.types";
 export * from "./types/story.firestore.types";
+export * from "./types/config.types";
 export * from "./utils/username";
 export * from "./utils/privacy";
+export * from "./utils/video";
 export * from "./media/permissions";
 export * from "./media/social-sharing";
 export * from "./media/media-resized";
-export * from "./types/config.types";
 
 export const sayHello = () => {
   console.log("hi");
