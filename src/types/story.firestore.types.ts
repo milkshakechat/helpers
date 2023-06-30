@@ -5,7 +5,7 @@ import {
   TimestampFirestore,
   AudienceGroupID,
   Bucket_File_URL,
-  StickerID,
+  WishID,
   Username,
 } from "./base.types";
 
@@ -35,7 +35,7 @@ export interface Story_Firestore {
   // friends mentioned
   mentionedUsers: UserID[];
   // wishlist mentioned
-  mentionedWishlists: StickerID[];
+  mentionedWishlists: WishID[];
   // duration
   expiresAt: TimestampFirestore;
   // location

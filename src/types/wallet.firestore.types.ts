@@ -2,13 +2,13 @@ import {
   CookieSaleID,
   GiftCardSaleID,
   JournalEntryID,
-  StickerID,
   StickerSaleID,
   WalletID,
   TimestampFirestore,
   TransactionID,
   UserID,
   WishlistID,
+  WishID,
 } from "./base.types";
 
 export interface Wallet_Firestore {
@@ -53,8 +53,7 @@ export interface TransactionMetadata {
   transactionID: TransactionID;
   stickerSaleMetadata?: {
     stickerSaleID: StickerSaleID;
-    stickerID: StickerID;
-    wishlistID?: WishlistID;
+    wishID: WishID;
     promoCode?: string;
   };
   cookieSaleMetadata?: {

@@ -25,7 +25,7 @@ export type NotificationID = string & {
 export type WishlistID = string & {
   readonly _: unique symbol;
 };
-export type StickerID = string & {
+export type WishID = string & {
   readonly _: unique symbol;
 };
 export type OwnedStickerID = string & {
@@ -83,6 +83,7 @@ export enum FirestoreCollection {
   FRIENDSHIPS = "friendships",
   CHAT_ROOMS = "chatRooms",
   STORIES = "stories",
+  WISH = "wish",
 }
 
 export const placeholderVideoThumbnail =
@@ -93,3 +94,9 @@ export const placeholderImageThumbnail =
 
 export const placeholderAudioThumbnail =
   "https://firebasestorage.googleapis.com/v0/b/superlore-dev.appspot.com/o/defaults%2Faudio-thumbnail.jpeg?alt=media";
+
+export const placeholderSticker =
+  "https://firebasestorage.googleapis.com/v0/b/milkshake-dev-faf77.appspot.com/o/app-public-shared%2Fdefault_sticker.jpg?alt=media";
+
+export const placeholderWishlistGraphic =
+  "https://firebasestorage.googleapis.com/v0/b/milkshake-dev-faf77.appspot.com/o/app-public-shared%2Fdefault_gift.jpeg?alt=media";
