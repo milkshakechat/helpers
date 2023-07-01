@@ -34,6 +34,7 @@ export interface Wish_Firestore {
   galleryMediaSet: MediaSet[];
   stickerMediaSet: MediaSet;
   isFavorite: boolean;
+  deleted: boolean;
 }
 
 // export interface OwnedSticker_Firestore {
