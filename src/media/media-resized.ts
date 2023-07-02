@@ -87,9 +87,3 @@ export function getCompressedStoryImageUrl({
   console.log(`newURL`, newURL);
   return newURL;
 }
-
-// Actual
-// https://firebasestorage.googleapis.com/v0/b/200x200/o/users%2Fm2fb0WWHOBesIAsevvCeNfv1w2Z2%2Favatars%2Fresized-media%2F92011d27-1d6e-453b-b994-d42a3d824657_200x200.jpeg?alt=media
-
-// Expected
-// https://firebasestorage.googleapis.com/v0/b/milkshake-dev-faf77.appspot.com/o/users%2Fm2fb0WWHOBesIAsevvCeNfv1w2Z2%2Favatars%2Fresized-media%2F92011d27-1d6e-453b-b994-d42a3d824657_200x200.jpeg?alt=media&token=18fb7d93-11e1-4999-88d2-abe5d8e91ee2
