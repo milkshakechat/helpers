@@ -23,6 +23,12 @@ export interface MediaSet {
   large?: string;
 }
 
+export enum WishBuyFrequency {
+  ONE_TIME = "ONE_TIME",
+  MONTHLY = "MONTHLY",
+  WEEKLY = "WEEKLY",
+}
+
 export interface Wish_Firestore {
   id: WishID; // index
   creatorID: UserID; // index
@@ -36,6 +42,7 @@ export interface Wish_Firestore {
   isFavorite: boolean;
   deleted: boolean;
   createdAt: TimestampFirestore;
+  buyFrequency: WishBuyFrequency;
 }
 
 // export interface OwnedSticker_Firestore {
