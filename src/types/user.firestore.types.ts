@@ -29,8 +29,16 @@ export interface User_Firestore {
   themeColor: ThemeColorHex;
   language: localeEnum;
   gender: genderEnum;
+  interestedIn: genderEnum[];
   usernameLastUpdated: TimestampFirestore;
   sendBirdAccessToken?: SendBirdAccessToken;
+}
+
+export enum genderEnum {
+  male = "male",
+  female = "female",
+  other = "other",
+  unknown = "unknown",
 }
 
 export enum FriendshipStatus {
@@ -64,12 +72,6 @@ export enum localeEnum {
   thai = "thai",
   vietnamese = "vietnamese",
   // russian = "russian",
-}
-
-export enum genderEnum {
-  male = "male",
-  female = "female",
-  other = "other",
 }
 
 export enum privacyModeEnum {
