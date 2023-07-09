@@ -29,6 +29,12 @@ export enum WishBuyFrequency {
   WEEKLY = "WEEKLY",
 }
 
+export enum WishlistVisibility {
+  PUBLIC_MARKETPLACE = "PUBLIC_MARKETPLACE",
+  FRIENDS_ONLY = "FRIENDS_ONLY",
+  HIDDEN = "HIDDEN",
+}
+
 export interface Wish_Firestore {
   id: WishID; // index
   creatorID: UserID; // index
@@ -43,6 +49,7 @@ export interface Wish_Firestore {
   deleted: boolean;
   createdAt: TimestampFirestore;
   buyFrequency: WishBuyFrequency;
+  visibility: WishlistVisibility;
 }
 
 // export interface OwnedSticker_Firestore {
