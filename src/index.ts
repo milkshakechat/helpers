@@ -9,6 +9,7 @@ export * from "./types/chatroom.firestore.types";
 export * from "./types/story.firestore.types";
 export * from "./types/wishlist.firestore.types";
 export * from "./types/config.types";
+export * from "./utils/support-hr";
 export * from "./utils/username";
 export * from "./utils/privacy";
 export * from "./utils/video";

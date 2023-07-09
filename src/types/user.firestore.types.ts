@@ -19,7 +19,7 @@ export interface User_Firestore {
   avatar: string;
   link: string;
   isCreator: boolean;
-  mainWalletID?: WalletID;
+  mainWalletID: WalletID;
   sendBirdUserID?: SendBirdUserID;
   createdAt: TimestampFirestore;
   isPaidChat: boolean;

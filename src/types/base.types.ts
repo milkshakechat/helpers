@@ -7,6 +7,9 @@ export type SendBirdUserID = string & {
 export type WalletID = string & {
   readonly _: unique symbol;
 };
+export type StripeAccountID = string & {
+  readonly _: unique symbol;
+};
 export type StoryID = string & {
   readonly _: unique symbol;
 };
@@ -84,6 +87,7 @@ export enum FirestoreCollection {
   CHAT_ROOMS = "chatRooms",
   STORIES = "stories",
   WISH = "wish",
+  WALLETS = "wallets",
 }
 
 export const placeholderVideoThumbnail =
