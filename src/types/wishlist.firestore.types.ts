@@ -29,6 +29,11 @@ export enum WishBuyFrequency {
   WEEKLY = "WEEKLY",
 }
 
+export const cookieToUSD = (cookies: number) => {
+  const exchangeRate = 0.73;
+  return (cookies * exchangeRate).toFixed(2);
+};
+
 export enum WishlistVisibility {
   PUBLIC_MARKETPLACE = "PUBLIC_MARKETPLACE",
   FRIENDS_ONLY = "FRIENDS_ONLY",

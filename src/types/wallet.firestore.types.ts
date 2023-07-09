@@ -9,17 +9,19 @@ import {
   UserID,
   WishlistID,
   WishID,
+  StripeAccountID,
 } from "./base.types";
 
 export interface Wallet_Firestore {
   id: WalletID; // index
-  operatorID: UserID; // index
   ownerID: UserID; // index
+  stripeAccountID?: StripeAccountID; // index
+  hasMerchantPrivilege: boolean;
   title: string;
   createdAt: TimestampFirestore;
   note: string;
   cookieBalance: number;
-  assumedRealValueUSDBalance: number;
+  assumedRealValueUSDBalance?: number;
 }
 
 export enum TransactionType {
