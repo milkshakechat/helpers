@@ -9,13 +9,16 @@ import {
   UserID,
   WishlistID,
   WishID,
-  StripeAccountID,
+  StripeMerchantID,
+  StripeCustomerID,
+  CashChargeID,
 } from "./base.types";
 
 export interface Wallet_Firestore {
   id: WalletID; // index
   ownerID: UserID; // index
-  stripeAccountID?: StripeAccountID; // index
+  stripeMerchantID?: StripeMerchantID; // index
+  stripeCustomerID?: StripeCustomerID; // index
   hasMerchantPrivilege: boolean;
   title: string;
   createdAt: TimestampFirestore;
@@ -36,6 +39,15 @@ export enum TransactionStatus {
   FAILURE = "FAILURE",
 }
 
+export interface CashCharge {
+  id: CashChargeID;
+  amount: number;
+  currency: string;
+  source: string;
+  createdAt: TimestampFirestore;
+  transactionID: TransactionID;
+}
+
 export interface Transaction {
   id: TransactionID; // index
   senderWalletID: WalletID; // index
@@ -49,6 +61,7 @@ export interface Transaction {
   status: TransactionStatus;
   createdAt: TimestampFirestore;
   metadata: TransactionMetadata;
+  chargeID?: CashChargeID;
 }
 
 export interface TransactionMetadata {
