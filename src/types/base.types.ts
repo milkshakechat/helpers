@@ -49,7 +49,16 @@ export type StickerSaleID = string & {
 export type TransactionID = string & {
   readonly _: unique symbol;
 };
-export type CashChargeID = string & {
+export type CardChargeID = string & {
+  readonly _: unique symbol;
+};
+export type WishDealID = string & {
+  readonly _: unique symbol;
+};
+export type StripePaymentIntentID = string & {
+  readonly _: unique symbol;
+};
+export type StripeSubscriptionID = string & {
   readonly _: unique symbol;
 };
 export type JournalEntryID = string & {

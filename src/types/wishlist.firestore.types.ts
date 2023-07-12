@@ -32,7 +32,7 @@ export enum WishBuyFrequency {
 
 export const cookieToUSD = (cookies: number) => {
   const exchangeRate = 0.73;
-  return (cookies * exchangeRate).toFixed(2);
+  return parseFloat((cookies * exchangeRate).toFixed(2));
 };
 
 export enum WishlistVisibility {
