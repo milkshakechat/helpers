@@ -18,7 +18,7 @@ import {
 } from "./base.types";
 import { WishBuyFrequency } from "./wishlist.firestore.types";
 
-export interface Wallet_Firestore {
+export interface Wallet_QuantumLedger {
   // base info
   id: WalletID; // index
   ownerID: UserID; // index
@@ -31,8 +31,7 @@ export interface Wallet_Firestore {
   stripeMerchantID?: StripeMerchantID;
   hasMerchantPrivilege: boolean;
   // wallet details
-  cookieBalanceSnapshot: number;
-  lastSnapshotTime: TimestampFirestore;
+  balance: number;
 }
 
 // created every time a credit card is charged by Stripe
