@@ -27,17 +27,23 @@ export enum WishBuyFrequency {
   ONE_TIME = "ONE_TIME",
   MONTHLY = "MONTHLY",
   WEEKLY = "WEEKLY",
+  DAILY = "DAILY",
 }
 
 export const cookieToUSD = (cookies: number) => {
   const exchangeRate = 0.73;
-  return (cookies * exchangeRate).toFixed(2);
+  return parseFloat((cookies * exchangeRate).toFixed(2));
 };
 
 export enum WishlistVisibility {
   PUBLIC_MARKETPLACE = "PUBLIC_MARKETPLACE",
   FRIENDS_ONLY = "FRIENDS_ONLY",
   HIDDEN = "HIDDEN",
+}
+
+export enum WishTypeEnum {
+  EVENT = "EVENT",
+  GIFT = "GIFT",
 }
 
 export interface Wish_Firestore {
@@ -55,6 +61,9 @@ export interface Wish_Firestore {
   createdAt: TimestampFirestore;
   buyFrequency: WishBuyFrequency;
   visibility: WishlistVisibility;
+  wishType: WishTypeEnum;
+  countdownDate?: TimestampFirestore;
+  externalURL?: string;
 }
 
 // export interface OwnedSticker_Firestore {
