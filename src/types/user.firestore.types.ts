@@ -8,6 +8,7 @@ import {
   Username,
   SendBirdAccessToken,
 } from "./base.types";
+import { StripeMetadata_UserFirestore } from "./wallet.firestore.types";
 
 export interface User_Firestore {
   id: UserID; // index
@@ -32,6 +33,7 @@ export interface User_Firestore {
   interestedIn: genderEnum[];
   usernameLastUpdated: TimestampFirestore;
   sendBirdAccessToken?: SendBirdAccessToken;
+  stripeMetadata?: StripeMetadata_UserFirestore;
 }
 
 export enum genderEnum {

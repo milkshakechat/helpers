@@ -52,7 +52,7 @@ export type TransactionID = string & {
 export type CardChargeID = string & {
   readonly _: unique symbol;
 };
-export type WishDealID = string & {
+export type PurchaseMainfestID = string & {
   readonly _: unique symbol;
 };
 export type StripePaymentIntentID = string & {
