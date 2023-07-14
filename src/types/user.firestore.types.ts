@@ -7,8 +7,10 @@ import {
   ThemeColorHex,
   Username,
   SendBirdAccessToken,
+  StripeCustomerID,
+  StripeSubscriptionID,
+  StripeMerchantID,
 } from "./base.types";
-import { StripeMetadata_UserFirestore } from "./wallet.firestore.types";
 
 export interface User_Firestore {
   id: UserID; // index
@@ -34,6 +36,15 @@ export interface User_Firestore {
   usernameLastUpdated: TimestampFirestore;
   sendBirdAccessToken?: SendBirdAccessToken;
   stripeMetadata?: StripeMetadata_UserFirestore;
+}
+
+// exists on User_Firestore
+export interface StripeMetadata_UserFirestore {
+  // stripe foreign keys
+  stripeCustomerID?: StripeCustomerID;
+  stripeCustomerSubscriptionID?: StripeSubscriptionID;
+  stripeMerchantID?: StripeMerchantID;
+  hasMerchantPrivilege: boolean;
 }
 
 export enum genderEnum {

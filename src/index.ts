@@ -16,6 +16,7 @@ export * from "./utils/video";
 export * from "./media/permissions";
 export * from "./media/social-sharing";
 export * from "./media/media-resized";
+export * from "./xcloud/wallet-gateway.types";
 
 export const sayHello = () => {
   console.log("hi");

@@ -37,33 +37,9 @@ export interface Wallet_Quantum {
   isLocked: boolean;
 }
 
-export interface Wallet_Firestore {
-  id: WalletID; // index
-  userRelationshipHash: UserRelationshipHash; // index
-  ownerID: UserID; // index
-  title: string;
-  note: string;
-  createdAt: QuantumLedgerDate;
-  cookieBalanceSnapshot: number;
-  type: WalletType;
-  stripeCustomerID?: StripeCustomerID;
-  stripeCustomerSubscriptionID?: StripeSubscriptionID;
-  stripeMerchantID?: StripeMerchantID;
-  hasMerchantPrivilege: boolean;
-}
-
 export enum WalletType {
   TRADING = "TRADING",
   ESCROW = "ESCROW",
-}
-
-// exists on User_Firestore
-export interface StripeMetadata_UserFirestore {
-  // stripe foreign keys
-  stripeCustomerID?: StripeCustomerID;
-  stripeCustomerSubscriptionID?: StripeSubscriptionID;
-  stripeMerchantID?: StripeMerchantID;
-  hasMerchantPrivilege: boolean;
 }
 
 // created every time a credit card is charged by Stripe
