@@ -12,38 +12,71 @@ import {
   StripeMerchantID,
   StripeCustomerID,
   CardChargeID,
-  WishDealID,
+  PurchaseMainfestID,
   StripePaymentIntentID,
   StripeSubscriptionID,
 } from "./base.types";
 import { WishBuyFrequency } from "./wishlist.firestore.types";
 
-export interface Wallet_QuantumLedger {
+export enum QuantumLedgerNames {
+  WALLET = "WALLET",
+  TRANSACTION = "TRANSACTION",
+}
+
+export type QuantumLedgerDate = Date;
+export interface Wallet_Quantum {
   // base info
   id: WalletID; // index
+  userRelationshipHash: UserRelationshipHash; // index
   ownerID: UserID; // index
   title: string;
   note: string;
-  createdAt: TimestampFirestore;
+  createdAt: QuantumLedgerDate;
+  balance: number;
+  type: WalletType;
+  isLocked: boolean;
+}
+
+export interface Wallet_Firestore {
+  id: WalletID; // index
+  userRelationshipHash: UserRelationshipHash; // index
+  ownerID: UserID; // index
+  title: string;
+  note: string;
+  createdAt: QuantumLedgerDate;
+  cookieBalanceSnapshot: number;
+  type: WalletType;
+  stripeCustomerID?: StripeCustomerID;
+  stripeCustomerSubscriptionID?: StripeSubscriptionID;
+  stripeMerchantID?: StripeMerchantID;
+  hasMerchantPrivilege: boolean;
+}
+
+export enum WalletType {
+  TRADING = "TRADING",
+  ESCROW = "ESCROW",
+}
+
+// exists on User_Firestore
+export interface StripeMetadata_UserFirestore {
   // stripe foreign keys
   stripeCustomerID?: StripeCustomerID;
   stripeCustomerSubscriptionID?: StripeSubscriptionID;
   stripeMerchantID?: StripeMerchantID;
   hasMerchantPrivilege: boolean;
-  // wallet details
-  balance: number;
 }
 
 // created every time a credit card is charged by Stripe
 // could be one-time payment, or subscription payment webhook
-export interface CardCharge {
+export interface CardCharge_Firestore {
   id: CardChargeID; // index
   userID: UserID; // index
+  stripeCustomerID?: StripeCustomerID;
   amount: number;
   currency: string;
   source: string;
   createdAt: TimestampFirestore;
-  wishDealSnapshot: WishDealID[];
+  wishDealSnapshot: PurchaseMainfestID[];
   stripePaymentIntentID?: StripePaymentIntentID;
   stripeSubscriptionID?: StripeSubscriptionID;
 }
@@ -53,38 +86,45 @@ export interface CardCharge {
 // one time sales appear as 1 wish deal
 // cookie transfers do NOT appear as a wish deal
 // this is primarily for the user to see a summary of their past purchases
-export interface WishDeal {
+export interface PurchaseMainfest_Firestore {
   // basic info
-  id: WishDealID;
+  id: PurchaseMainfestID;
   note: string;
   createdAt: TimestampFirestore;
+  wishID: WishID; // index
   // foriegn keys
   buyerUserID: UserID; // index
   sellerUserID: UserID; // index
-  wishID: WishID; // index
+  // foreign keys
+  buyerWalletID: WalletID; // index
+  escrowWalletID?: WalletID; // index
   // wish details
   agreedCookiePrice: number;
   originalCookiePrice: number;
   // subscription details
   agreedBuyFrequency: WishBuyFrequency;
   originalBuyFrequency: WishBuyFrequency;
+  // recall
   isCancelled: boolean;
   cancelledAt?: TimestampFirestore;
   cancelledBy?: UserID;
 }
 
+export type UserRelationshipHash = string; // hash = [userID].sort().join("-")
+
 // created every time a user transacts with cookies
 // this can be independent of CardCharges
-export interface Transaction {
+export interface Transaction_Quantum {
   // base info
   id: TransactionID; // index
   title: string;
   note: string;
   createdAt: TimestampFirestore;
   // foriegn keys
-  senderWalletID: WalletID; // index
-  recieverWalletID: WalletID; // index
-  wishDealID?: WishDealID; // index
+  userRelationshipHash: UserRelationshipHash; // index
+  sendingWalletID: WalletID;
+  recievingWalletID: WalletID;
+  purchaseManifestID?: PurchaseMainfestID;
   // archive log with pov
   explanation: {
     [key: WalletID]: {
@@ -134,7 +174,7 @@ export interface TransactionMetadata {
   };
 }
 
-export interface JournalEntry {
+export interface JournalEntry_Quantum {
   id: JournalEntryID; // index
   transactionID: TransactionID; // index
   walletID: WalletID; // index
