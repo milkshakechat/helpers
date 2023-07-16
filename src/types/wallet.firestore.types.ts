@@ -1,9 +1,8 @@
 import {
   CookieSaleID,
   GiftCardSaleID,
-  JournalEntryID,
   StickerSaleID,
-  WalletID,
+  WalletAliasID,
   TimestampFirestore,
   TransactionID,
   UserID,
@@ -15,8 +14,29 @@ import {
   PurchaseMainfestID,
   StripePaymentIntentID,
   StripeSubscriptionID,
+  WalletID,
 } from "./base.types";
 import { WishBuyFrequency } from "./wishlist.firestore.types";
+import { v4 as uuidv4 } from "uuid";
+
+// user can spend this money
+export const getMainUserTradingWallet = (userID: UserID) => {
+  return `${userID}_main-trading-wallet` as WalletAliasID;
+};
+
+// user receives money here but cannot spend it for 90 days
+export const getUserEscrowWallet = (userID: UserID) => {
+  return `${userID}_main-escrow-wallet` as WalletAliasID;
+};
+
+export const checkIfTradingWallet = (walletAliasID: WalletAliasID) => {
+  return walletAliasID.includes("_main-trading-wallet");
+};
+
+export const generateGlobalStoreAliasID = () => {
+  const id = uuidv4();
+  return `global-store-${id}` as WalletAliasID;
+};
 
 export enum QuantumLedgerNames {
   WALLET = "WALLET",
@@ -26,8 +46,8 @@ export enum QuantumLedgerNames {
 export type QuantumLedgerDate = Date;
 export interface Wallet_Quantum {
   // base info
-  id: WalletID; // index
-  userRelationshipHash: UserRelationshipHash; // index
+  id: WalletID;
+  walletAliasID: WalletAliasID; // index and alias
   ownerID: UserID; // index
   title: string;
   note: string;
@@ -35,11 +55,13 @@ export interface Wallet_Quantum {
   balance: number;
   type: WalletType;
   isLocked: boolean;
+  mostRecentTransactionID?: TransactionID;
 }
 
 export enum WalletType {
   TRADING = "TRADING",
   ESCROW = "ESCROW",
+  STORE = "STORE",
 }
 
 // created every time a credit card is charged by Stripe
@@ -72,8 +94,8 @@ export interface PurchaseMainfest_Firestore {
   buyerUserID: UserID; // index
   sellerUserID: UserID; // index
   // foreign keys
-  buyerWalletID: WalletID; // index
-  escrowWalletID?: WalletID; // index
+  buyerWalletID: WalletAliasID; // index
+  escrowWalletID?: WalletAliasID; // index
   // wish details
   agreedCookiePrice: number;
   originalCookiePrice: number;
@@ -95,25 +117,25 @@ export interface Transaction_Quantum {
   id: TransactionID; // index
   title: string;
   note: string;
-  createdAt: TimestampFirestore;
+  createdAt: QuantumLedgerDate;
   // foriegn keys
-  userRelationshipHash: UserRelationshipHash; // index
-  sendingWalletID: WalletID;
-  recievingWalletID: WalletID;
+  sendingWallet: WalletAliasID; // trading wallet
+  recievingWallet: WalletAliasID; // escrow wallet
   purchaseManifestID?: PurchaseMainfestID;
-  // archive log with pov
-  explanation: {
-    [key: WalletID]: {
-      title: string;
-      note: string;
-      avatar: string;
+  // archive log with pov (may include future creditors such as club boss)
+  explanations: {
+    [key: WalletAliasID]: {
+      walletAliasID: WalletAliasID;
+      explanation: string;
+      amount: number;
     };
   };
   // transaction details
-  cookieQuantity: number;
+  amount: number;
   type: TransactionType;
   attribution?: string;
   gotReverted: boolean; // reverted means return or recalled. default is false, but if ever recalled/returned this will become true. allows us to prevent double reversals
+  revertedTransactionID?: TransactionID;
   metadata: TransactionMetadata;
 }
 
@@ -150,37 +172,12 @@ export interface TransactionMetadata {
   };
 }
 
+// this is not an exact type, just a reference representato of the QLDB history diff
+// todo: turn this into a real type
 export interface JournalEntry_Quantum {
-  id: JournalEntryID; // index
-  transactionID: TransactionID; // index
-  walletID: WalletID; // index
+  // id: this comes from QLDB History of Wallet_Quantum
+  transactionID: TransactionID;
+  wallet: WalletAliasID;
   cookieQuantityDelta: number;
-  note: string;
-  createdAt: TimestampFirestore;
+  updatedAt: TimestampFirestore;
 }
-
-/**
- * Example purchase of cookies
- * - 1 Transaction created
- * - 1 JournalEntries created
- *     - add cookies to receiver
- *
- * Example purchase of stickers
- * - 1 Transaction created
- * - 3 JournalEntries created
- *      - deduct cookies from sender
- *      - add cookies to receiver
- *      - add cookies to house
- *
- * Example purchase of gift card
- * - 1 Transaction created
- * - 1 JournalEntries created
- *      - add cookies to gift card
- *
- * Example redemption of gift card
- * - 1 Transaction created
- * - 2 JournalEntries created
- *      - deduct cookies from gift card
- *      - add cookies to receiver
- *
- */
