@@ -7,6 +7,9 @@ export type SendBirdUserID = string & {
 export type WalletID = string & {
   readonly _: unique symbol;
 };
+export type WalletAliasID = string & {
+  readonly _: unique symbol;
+};
 export type StripeMerchantID = string & {
   readonly _: unique symbol;
 };
@@ -59,9 +62,6 @@ export type StripePaymentIntentID = string & {
   readonly _: unique symbol;
 };
 export type StripeSubscriptionID = string & {
-  readonly _: unique symbol;
-};
-export type JournalEntryID = string & {
   readonly _: unique symbol;
 };
 export type PushTokenID = string & {

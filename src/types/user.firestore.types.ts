@@ -1,7 +1,7 @@
 import {
   UserID,
   SendBirdUserID,
-  WalletID,
+  WalletAliasID,
   TimestampFirestore,
   FriendshipID,
   ThemeColorHex,
@@ -22,7 +22,8 @@ export interface User_Firestore {
   avatar: string;
   link: string;
   isCreator: boolean;
-  mainWalletID: WalletID;
+  tradingWallet: WalletAliasID;
+  escrowWallet: WalletAliasID;
   sendBirdUserID?: SendBirdUserID;
   createdAt: TimestampFirestore;
   isPaidChat: boolean;
