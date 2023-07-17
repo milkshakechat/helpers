@@ -1,10 +1,20 @@
-import { PurchaseMainfestID, UserID, WalletAliasID } from "../types/base.types";
+import {
+  PurchaseMainfestID,
+  TransactionID,
+  UserID,
+  WalletAliasID,
+} from "../types/base.types";
 import {
   WalletType,
   Wallet_Quantum,
   UserRelationshipHash,
   Transaction_Quantum,
   TransactionType,
+  TxSalesMetadata,
+  TxRecallMetadata,
+  TxTransferMetadata,
+  TxTopUpMetadata,
+  TxCashOutMetadata,
 } from "../types/wallet.firestore.types";
 import { WishBuyFrequency } from "../types/wishlist.firestore.types";
 
@@ -69,22 +79,12 @@ export interface PostTransactionXCloudRequestBody {
     explanation: string;
     amount: number;
   }[];
-  dealMetadata?: {
-    buyerNote: string;
-    promoCode?: string;
-    // deal details
-    agreedCookiePrice: number;
-    originalCookiePrice: number;
-    agreedBuyFrequency: WishBuyFrequency;
-    originalBuyFrequency: WishBuyFrequency;
-  };
-  transferMetadata?: {
-    senderNote: string;
-  };
-  topUpMetadata?: {
-    internalNote: string;
-    promoCode?: string;
-  };
+  gotRecalled?: boolean;
+  salesMetadata?: TxSalesMetadata;
+  recallMetadata?: TxRecallMetadata;
+  transferMetadata?: TxTransferMetadata;
+  topUpMetadata?: TxTopUpMetadata;
+  cashOutMetadata?: TxCashOutMetadata;
 }
 export interface PostTransactionXCloudResponse {
   statusCode: 200;
@@ -95,15 +95,45 @@ export interface PostTransactionXCloudResponseBody {
   transaction: Transaction_Quantum;
 }
 
-// ---- Post Refund ---- //
-export interface PostRefundXCloudRequestBody {
-  //
+// ---- Get Transaction ---- //
+export interface GetTransactionXCloudRequestBody {
+  transactionID: TransactionID;
 }
-export interface PostRefundXCloudResponse {
+export interface GetTransactionXCloudResponse {
   statusCode: 200;
-  body: string; // JSON.parse(body) = PostRefundXCloudResponseBody
+  body: string; // JSON.parse(body) = RecallTransactionXCloudResponseBody
 }
-export interface PostRefundXCloudResponseBody {
+export interface GetTransactionXCloudResponseBody {
   message: string;
-  refund: Transaction_Quantum;
+  transaction: Transaction_Quantum;
+}
+
+// ---- Recall Transaction ---- //
+export interface RecallTransactionXCloudRequestBody {
+  transactionID: TransactionID;
+  recallerWalletID: WalletAliasID;
+  recallerNote: string;
+}
+export interface RecallTransactionXCloudResponse {
+  statusCode: 200;
+  body: string; // JSON.parse(body) = RecallTransactionXCloudResponseBody
+}
+export interface RecallTransactionXCloudResponseBody {
+  message: string;
+  transaction: Transaction_Quantum;
+}
+
+// ---- Cash Out ---- //
+export interface CashOutXCloudRequestBody {
+  transactionID: TransactionID;
+  initiatorWallet: WalletAliasID;
+  cashoutCode?: string;
+}
+export interface CashOutXCloudResponse {
+  statusCode: 200;
+  body: string; // JSON.parse(body) = CashOutXCloudResponseBody
+}
+export interface CashOutXCloudResponseBody {
+  message: string;
+  transaction: Transaction_Quantum;
 }
