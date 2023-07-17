@@ -79,6 +79,7 @@ export interface PostTransactionXCloudRequestBody {
     explanation: string;
     amount: number;
   }[];
+  gotRecalled?: boolean;
   salesMetadata?: TxSalesMetadata;
   recallMetadata?: TxRecallMetadata;
   transferMetadata?: TxTransferMetadata;
