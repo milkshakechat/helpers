@@ -29,8 +29,18 @@ export const getUserEscrowWallet = (userID: UserID) => {
   return `${userID}_main-escrow-wallet` as WalletAliasID;
 };
 
-export const checkIfTradingWallet = (walletAliasID: WalletAliasID) => {
+export const checkIfTradingWallet = (walletAliasID?: WalletAliasID) => {
+  if (!walletAliasID) {
+    throw new Error("walletAliasID provided is undefined");
+  }
   return walletAliasID.includes("_main-trading-wallet");
+};
+
+export const checkIfEscrowWallet = (walletAliasID?: WalletAliasID) => {
+  if (!walletAliasID) {
+    throw new Error("walletAliasID provided is undefined");
+  }
+  return walletAliasID.includes("_main-escrow-wallet");
 };
 
 export const generateGlobalStoreAliasID = () => {
@@ -134,42 +144,58 @@ export interface Transaction_Quantum {
   amount: number;
   type: TransactionType;
   attribution?: string;
-  gotReverted: boolean; // reverted means return or recalled. default is false, but if ever recalled/returned this will become true. allows us to prevent double reversals
-  revertedTransactionID?: TransactionID;
+  gotRecalled: boolean; // reverted means return or recalled. default is false, but if ever recalled/returned this will become true. allows us to prevent double reversals
+  gotCashedOut: boolean; // redeemed means the money left escrow
+  recallTransactionID?: TransactionID;
+  cashOutTransactionID?: TransactionID;
   metadata: TransactionMetadata;
 }
 
 export enum TransactionType {
   DEAL = "DEAL", // when a user buys a wish
-  REFUND = "REFUND", // when a user refunds a wish
+  RECALL = "RECALL", // when a user recalls a wish
   TRANSFER = "TRANSFER", // when a user transfers cookies to another user
   TOP_UP = "TOP_UP", // when a user buys cookies from the house to top up their wallet
+  CASH_OUT = "CASH_OUT", // when a user cashes out their cookies
 }
 
 export interface TransactionMetadata {
   transactionID: TransactionID;
-  dealMetadata?: {
-    buyerNote: string;
-    promoCode?: string;
-    // deal details
-    agreedCookiePrice: number;
-    originalCookiePrice: number;
-    agreedBuyFrequency: WishBuyFrequency;
-    originalBuyFrequency: WishBuyFrequency;
-  };
-  refundMetadata?: {
-    refundTransactionID: TransactionID;
-    buyerNote: string;
-    sellerNote: string;
-    internalNote: string;
-  };
-  transferMetadata?: {
-    senderNote: string;
-  };
-  topUpMetadata?: {
-    internalNote: string;
-    promoCode?: string;
-  };
+  salesMetadata?: TxSalesMetadata;
+  recallMetadata?: TxRecallMetadata;
+  transferMetadata?: TxTransferMetadata;
+  topUpMetadata?: TxTopUpMetadata;
+  cashOutMetadata?: TxCashOutMetadata;
+}
+
+export interface TxSalesMetadata {
+  buyerNote: string;
+  promoCode?: string;
+  // deal details
+  agreedCookiePrice: number;
+  originalCookiePrice: number;
+  agreedBuyFrequency: WishBuyFrequency;
+  originalBuyFrequency: WishBuyFrequency;
+}
+
+export interface TxRecallMetadata {
+  originalTransactionID: TransactionID;
+  recallerWalletID: WalletAliasID;
+  recallerNote: string;
+}
+
+export interface TxTransferMetadata {
+  senderNote: string;
+}
+
+export interface TxTopUpMetadata {
+  internalNote: string;
+  promoCode?: string;
+}
+
+export interface TxCashOutMetadata {
+  initiatorWallet: WalletAliasID;
+  cashoutCode?: string;
 }
 
 // this is not an exact type, just a reference representato of the QLDB history diff
