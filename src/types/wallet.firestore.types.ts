@@ -38,6 +38,13 @@ export const checkIfTradingWallet = (walletAliasID?: WalletAliasID) => {
   return walletAliasID.includes("_main-trading-wallet");
 };
 
+export const checkIfStoreWallet = (walletAliasID?: WalletAliasID) => {
+  if (!walletAliasID) {
+    throw new Error("walletAliasID provided is undefined");
+  }
+  return walletAliasID.includes("_store-wallet");
+};
+
 export const checkIfEscrowWallet = (walletAliasID?: WalletAliasID) => {
   if (!walletAliasID) {
     throw new Error("walletAliasID provided is undefined");
@@ -46,8 +53,9 @@ export const checkIfEscrowWallet = (walletAliasID?: WalletAliasID) => {
 };
 
 export const generateGlobalStoreAliasID = () => {
-  const id = uuidv4();
-  return `global-store-${id}` as WalletAliasID;
+  // const id = uuidv4();
+  const id = "milkshake-v0.1";
+  return `${id}_store-wallet` as WalletAliasID;
 };
 
 export enum QuantumLedgerNames {
@@ -98,6 +106,7 @@ export interface Wallet_MirrorFireLedger {
   title: string;
   balance: number;
   ownerID: UserID;
+  type: WalletType;
 }
 export const getMirrorTransactionID = ({
   txID,
