@@ -15,6 +15,8 @@ import {
   StripePaymentIntentID,
   StripeSubscriptionID,
   WalletID,
+  MirrorTransactionID,
+  MirrorWalletAliasID,
 } from "./base.types";
 import { WishBuyFrequency } from "./wishlist.firestore.types";
 import { v4 as uuidv4 } from "uuid";
@@ -87,6 +89,41 @@ export interface CardCharge_Firestore {
   wishDealSnapshot: PurchaseMainfestID[];
   stripePaymentIntentID?: StripePaymentIntentID;
   stripeSubscriptionID?: StripeSubscriptionID;
+}
+
+// used for frontend to show realtime wallet balances
+export interface Wallet_MirrorFireLedger {
+  id: WalletAliasID; // index
+  walletAliasID: WalletAliasID;
+  title: string;
+  balance: number;
+  ownerID: UserID;
+}
+export const getMirrorTransactionID = ({
+  txID,
+  walletAliasID,
+}: {
+  txID: TransactionID;
+  walletAliasID: WalletAliasID;
+}) => {
+  return `${txID}.${walletAliasID}` as MirrorTransactionID;
+};
+export interface Tx_MirrorFireLedger {
+  id: MirrorTransactionID; // index
+  walletAliasID: WalletAliasID; // index
+  txID: TransactionID;
+  note: string;
+  amount: number;
+  type: TransactionType;
+  createdAt: TimestampFirestore;
+  sendingWallet: WalletAliasID;
+  recievingWallet: WalletAliasID;
+  senderUserID: UserID;
+  recieverUserID: UserID;
+  ownerID: UserID;
+  purchaseManifestID?: PurchaseMainfestID;
+  recallTransactionID?: MirrorTransactionID;
+  cashOutTransactionID?: MirrorTransactionID;
 }
 
 // a log of every wish bought/sold by a user
@@ -195,6 +232,7 @@ export interface TxTopUpMetadata {
 
 export interface TxCashOutMetadata {
   initiatorWallet: WalletAliasID;
+  originalTransactionID: TransactionID;
   cashoutCode?: string;
 }
 

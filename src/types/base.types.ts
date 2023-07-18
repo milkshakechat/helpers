@@ -52,6 +52,12 @@ export type StickerSaleID = string & {
 export type TransactionID = string & {
   readonly _: unique symbol;
 };
+export type MirrorTransactionID = string & {
+  readonly _: unique symbol;
+};
+export type MirrorWalletAliasID = string & {
+  readonly _: unique symbol;
+};
 export type CardChargeID = string & {
   readonly _: unique symbol;
 };
@@ -102,7 +108,10 @@ export enum FirestoreCollection {
   CHAT_ROOMS = "chatRooms",
   STORIES = "stories",
   WISH = "wish",
-  WALLETS = "wallets",
+
+  // mirror wallet
+  MIRROR_WALLETS = "mirrorWallets",
+  MIRROR_TX = "mirrorTx",
 }
 
 export const placeholderVideoThumbnail =
