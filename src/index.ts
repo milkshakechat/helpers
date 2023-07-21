@@ -13,6 +13,7 @@ export * from "./utils/support-hr";
 export * from "./utils/username";
 export * from "./utils/privacy";
 export * from "./utils/video";
+export * from "./utils/utils";
 export * from "./media/permissions";
 export * from "./media/social-sharing";
 export * from "./media/media-resized";
