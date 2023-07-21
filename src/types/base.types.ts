@@ -73,6 +73,9 @@ export type StripePaymentIntentID = string & {
 export type StripeSubscriptionID = string & {
   readonly _: unique symbol;
 };
+export type StripePaymentMethodID = string & {
+  readonly _: unique symbol;
+};
 export type PushTokenID = string & {
   readonly _: unique symbol;
 };
@@ -92,6 +95,12 @@ export type SendBirdAccessToken = string & {
   readonly _: unique symbol;
 };
 export type SendBirdMessageID = string & {
+  readonly _: unique symbol;
+};
+export type StripeProductID = string & {
+  readonly _: unique symbol;
+};
+export type StripePriceID = string & {
   readonly _: unique symbol;
 };
 
@@ -115,6 +124,9 @@ export enum FirestoreCollection {
   // mirror wallet
   MIRROR_WALLETS = "mirrorWallets",
   MIRROR_TX = "mirrorTx",
+
+  // shopping
+  PURCHASE_MANIFESTS = "purchaseManifests",
 }
 
 export const placeholderVideoThumbnail =
