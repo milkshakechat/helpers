@@ -147,6 +147,7 @@ export interface Tx_MirrorFireLedger {
 export interface PurchaseMainfest_Firestore {
   // basic info
   id: PurchaseMainfestID;
+  title: string;
   note: string;
   createdAt: TimestampFirestore;
   wishID: WishID; // index
@@ -176,6 +177,7 @@ export interface PurchaseMainfest_Firestore {
   priceUSDBasisAsMonthly?: number;
   priceCookiePerFrequency?: number;
   priceCookieAsMonthly?: number;
+  stripePaymentIntentID?: StripePaymentIntentID;
 }
 
 export type UserRelationshipHash = string; // hash = [userID].sort().join("-")

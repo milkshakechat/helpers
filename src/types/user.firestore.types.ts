@@ -10,6 +10,7 @@ import {
   StripeCustomerID,
   StripeSubscriptionID,
   StripeMerchantID,
+  StripePaymentMethodID,
 } from "./base.types";
 
 export interface User_Firestore {
@@ -46,6 +47,7 @@ export interface StripeMetadata_UserFirestore {
   stripeCustomerSubscriptionID?: StripeSubscriptionID;
   stripeMerchantID?: StripeMerchantID;
   hasMerchantPrivilege: boolean;
+  defaultPaymentMethodID?: StripePaymentMethodID;
 }
 
 export enum genderEnum {

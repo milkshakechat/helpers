@@ -32,6 +32,26 @@ export enum WishBuyFrequency {
   DAILY = "DAILY",
 }
 
+export const WishBuyFrequencyPrettyPrint = (frequency: WishBuyFrequency) => {
+  switch (frequency) {
+    case WishBuyFrequency.ONE_TIME:
+      return "One Time Payment";
+      break;
+    case WishBuyFrequency.MONTHLY:
+      return "Monthly Subscription";
+      break;
+    case WishBuyFrequency.WEEKLY:
+      return "Weekly Subscription";
+      break;
+    case WishBuyFrequency.DAILY:
+      return "Daily Subscription";
+      break;
+    default:
+      return "Unknown Payment Frequency";
+      break;
+  }
+};
+
 export const cookieToUSD = (cookies: number) => {
   const exchangeRate = 0.73;
   return parseFloat((cookies * exchangeRate).toFixed(2));

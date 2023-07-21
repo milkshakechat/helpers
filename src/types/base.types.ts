@@ -73,6 +73,9 @@ export type StripePaymentIntentID = string & {
 export type StripeSubscriptionID = string & {
   readonly _: unique symbol;
 };
+export type StripePaymentMethodID = string & {
+  readonly _: unique symbol;
+};
 export type PushTokenID = string & {
   readonly _: unique symbol;
 };
