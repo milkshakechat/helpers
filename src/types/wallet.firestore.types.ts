@@ -18,6 +18,8 @@ import {
   MirrorTransactionID,
   MirrorWalletAliasID,
   TxRefID,
+  StripeProductID,
+  StripePriceID,
 } from "./base.types";
 import { WishBuyFrequency } from "./wishlist.firestore.types";
 import { v4 as uuidv4 } from "uuid";
@@ -152,11 +154,14 @@ export interface PurchaseMainfest_Firestore {
   buyerUserID: UserID; // index
   sellerUserID: UserID; // index
   // foreign keys
-  buyerWalletID: WalletAliasID; // index
-  escrowWalletID?: WalletAliasID; // index
+  buyerWallet: WalletAliasID; // index
+  escrowWallet?: WalletAliasID; // index
   // wish details
   agreedCookiePrice: number;
   originalCookiePrice: number;
+  // confirmation
+  paymentComplete: boolean;
+  referenceID: TxRefID;
   // subscription details
   agreedBuyFrequency: WishBuyFrequency;
   originalBuyFrequency: WishBuyFrequency;
@@ -164,6 +169,13 @@ export interface PurchaseMainfest_Firestore {
   isCancelled: boolean;
   cancelledAt?: TimestampFirestore;
   cancelledBy?: UserID;
+  // stripe
+  stripeProductID?: StripeProductID;
+  stripePriceID?: StripePriceID;
+  priceUSDPerFrequency?: number;
+  priceUSDBasisAsMonthly?: number;
+  priceCookiePerFrequency?: number;
+  priceCookieAsMonthly?: number;
 }
 
 export type UserRelationshipHash = string; // hash = [userID].sort().join("-")

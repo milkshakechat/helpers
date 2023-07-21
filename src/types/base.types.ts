@@ -94,6 +94,12 @@ export type SendBirdAccessToken = string & {
 export type SendBirdMessageID = string & {
   readonly _: unique symbol;
 };
+export type StripeProductID = string & {
+  readonly _: unique symbol;
+};
+export type StripePriceID = string & {
+  readonly _: unique symbol;
+};
 
 export type EmailString = string;
 export type Bucket_File_URL = string;
@@ -115,6 +121,9 @@ export enum FirestoreCollection {
   // mirror wallet
   MIRROR_WALLETS = "mirrorWallets",
   MIRROR_TX = "mirrorTx",
+
+  // shopping
+  PURCHASE_MANIFESTS = "purchaseManifests",
 }
 
 export const placeholderVideoThumbnail =

@@ -1,6 +1,8 @@
 import {
   OwnedStickerID,
   StickerSaleID,
+  StripePriceID,
+  StripeProductID,
   TimestampFirestore,
   UserID,
   WishID,
@@ -64,6 +66,8 @@ export interface Wish_Firestore {
   wishType: WishTypeEnum;
   countdownDate?: TimestampFirestore;
   externalURL?: string;
+  // stripe
+  stripeProductID?: StripeProductID;
 }
 
 // export interface OwnedSticker_Firestore {
