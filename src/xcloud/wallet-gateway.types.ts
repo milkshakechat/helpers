@@ -1,6 +1,7 @@
 import {
   PurchaseMainfestID,
   TransactionID,
+  TxRefID,
   UserID,
   WalletAliasID,
 } from "../types/base.types";
@@ -74,17 +75,23 @@ export interface PostTransactionXCloudRequestBody {
   amount: number;
   senderWallet: WalletAliasID;
   receiverWallet: WalletAliasID;
+  senderUserID: UserID;
+  receiverUserID: UserID;
   explanations: {
     walletAliasID: WalletAliasID;
     explanation: string;
     amount: number;
   }[];
   gotRecalled?: boolean;
+  gotCashOut?: boolean;
+  recallTransactionID?: TransactionID;
+  cashOutTransactionID?: TransactionID;
   salesMetadata?: TxSalesMetadata;
   recallMetadata?: TxRecallMetadata;
   transferMetadata?: TxTransferMetadata;
   topUpMetadata?: TxTopUpMetadata;
   cashOutMetadata?: TxCashOutMetadata;
+  referenceID?: TxRefID;
 }
 export interface PostTransactionXCloudResponse {
   statusCode: 200;
@@ -113,6 +120,7 @@ export interface RecallTransactionXCloudRequestBody {
   transactionID: TransactionID;
   recallerWalletID: WalletAliasID;
   recallerNote: string;
+  referenceID?: TxRefID;
 }
 export interface RecallTransactionXCloudResponse {
   statusCode: 200;
@@ -128,6 +136,7 @@ export interface CashOutXCloudRequestBody {
   transactionID: TransactionID;
   initiatorWallet: WalletAliasID;
   cashoutCode?: string;
+  referenceID?: TxRefID;
 }
 export interface CashOutXCloudResponse {
   statusCode: 200;

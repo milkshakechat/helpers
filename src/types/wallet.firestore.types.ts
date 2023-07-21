@@ -17,6 +17,7 @@ import {
   WalletID,
   MirrorTransactionID,
   MirrorWalletAliasID,
+  TxRefID,
 } from "./base.types";
 import { WishBuyFrequency } from "./wishlist.firestore.types";
 import { v4 as uuidv4 } from "uuid";
@@ -133,6 +134,7 @@ export interface Tx_MirrorFireLedger {
   purchaseManifestID?: PurchaseMainfestID;
   recallTransactionID?: MirrorTransactionID;
   cashOutTransactionID?: MirrorTransactionID;
+  referenceID?: TxRefID;
 }
 
 // a log of every wish bought/sold by a user
@@ -191,7 +193,7 @@ export interface Transaction_Quantum {
   type: TransactionType;
   attribution?: string;
   gotRecalled: boolean; // reverted means return or recalled. default is false, but if ever recalled/returned this will become true. allows us to prevent double reversals
-  gotCashedOut: boolean; // redeemed means the money left escrow
+  gotCashOut: boolean; // redeemed means the money left escrow
   recallTransactionID?: TransactionID;
   cashOutTransactionID?: TransactionID;
   metadata: TransactionMetadata;
@@ -207,11 +209,11 @@ export enum TransactionType {
 
 export interface TransactionMetadata {
   transactionID: TransactionID;
-  salesMetadata?: TxSalesMetadata;
-  recallMetadata?: TxRecallMetadata;
-  transferMetadata?: TxTransferMetadata;
-  topUpMetadata?: TxTopUpMetadata;
-  cashOutMetadata?: TxCashOutMetadata;
+  salesMetadata?: TxSalesMetadata | null;
+  recallMetadata?: TxRecallMetadata | null;
+  transferMetadata?: TxTransferMetadata | null;
+  topUpMetadata?: TxTopUpMetadata | null;
+  cashOutMetadata?: TxCashOutMetadata | null;
 }
 
 export interface TxSalesMetadata {

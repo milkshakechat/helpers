@@ -55,6 +55,9 @@ export type TransactionID = string & {
 export type MirrorTransactionID = string & {
   readonly _: unique symbol;
 };
+export type TxRefID = string & {
+  readonly _: unique symbol;
+};
 export type MirrorWalletAliasID = string & {
   readonly _: unique symbol;
 };
