@@ -20,6 +20,7 @@ import {
   TxRefID,
   StripeProductID,
   StripePriceID,
+  StripeSubItemID,
 } from "./base.types";
 import { WishBuyFrequency } from "./wishlist.firestore.types";
 import { v4 as uuidv4 } from "uuid";
@@ -173,6 +174,7 @@ export interface PurchaseMainfest_Firestore {
   // stripe
   stripeProductID?: StripeProductID;
   stripePriceID?: StripePriceID;
+  stripeSubItemID?: StripeSubItemID;
   priceUSDPerFrequency?: number;
   priceUSDBasisAsMonthly?: number;
   priceCookiePerFrequency?: number;

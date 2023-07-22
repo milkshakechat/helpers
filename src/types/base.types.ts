@@ -103,6 +103,9 @@ export type StripeProductID = string & {
 export type StripePriceID = string & {
   readonly _: unique symbol;
 };
+export type StripeSubItemID = string & {
+  readonly _: unique symbol;
+};
 
 export type EmailString = string;
 export type Bucket_File_URL = string;
