@@ -53,8 +53,12 @@ export const WishBuyFrequencyPrettyPrint = (frequency: WishBuyFrequency) => {
 };
 
 export const cookieToUSD = (cookies: number) => {
-  const exchangeRate = 0.73;
+  const exchangeRate = 0.73 / 1;
   return parseFloat((cookies * exchangeRate).toFixed(2));
+};
+export const usdToCookie = (usd: number) => {
+  const exchangeRate = 1 / 0.73;
+  return Math.ceil(parseFloat((usd * exchangeRate).toFixed(2)));
 };
 
 export enum WishlistVisibility {

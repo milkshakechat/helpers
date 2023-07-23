@@ -1,5 +1,6 @@
 import {
   PurchaseMainfestID,
+  StripePaymentIntentID,
   TransactionID,
   TxRefID,
   UserID,
@@ -145,4 +146,17 @@ export interface CashOutXCloudResponse {
 export interface CashOutXCloudResponseBody {
   message: string;
   transaction: Transaction_Quantum;
+}
+
+// ---- Confirm Charge ---- //
+export interface ConfirmChargeXCloudRequestBody {
+  transactions: PostTransactionXCloudRequestBody[];
+}
+export interface ConfirmChargeXCloudResponse {
+  statusCode: 200;
+  body: string; // JSON.parse(body) = ConfirmChargeXCloudResponseBody
+}
+export interface ConfirmChargeXCloudResponseBody {
+  message: string;
+  transactions: [Transaction_Quantum];
 }
