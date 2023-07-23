@@ -150,6 +150,7 @@ export interface PurchaseMainfest_Firestore {
   id: PurchaseMainfestID;
   title: string;
   note: string;
+  buyerNote?: string;
   createdAt: TimestampFirestore;
   wishID: WishID; // index
   // foriegn keys
@@ -157,7 +158,7 @@ export interface PurchaseMainfest_Firestore {
   sellerUserID: UserID; // index
   // foreign keys
   buyerWallet: WalletAliasID; // index
-  escrowWallet?: WalletAliasID; // index
+  escrowWallet: WalletAliasID; // index
   // wish details
   agreedCookiePrice: number;
   originalCookiePrice: number;
@@ -167,6 +168,9 @@ export interface PurchaseMainfest_Firestore {
   // subscription details
   agreedBuyFrequency: WishBuyFrequency;
   originalBuyFrequency: WishBuyFrequency;
+  // prorated
+  assumedMonthlyCookiePrice: number;
+  assumedMonthlyUSDPrice: number;
   // recall
   isCancelled: boolean;
   cancelledAt?: TimestampFirestore;
@@ -175,11 +179,11 @@ export interface PurchaseMainfest_Firestore {
   stripeProductID?: StripeProductID;
   stripePriceID?: StripePriceID;
   stripeSubItemID?: StripeSubItemID;
+  stripePaymentIntentID?: StripePaymentIntentID;
   priceUSDPerFrequency?: number;
   priceUSDBasisAsMonthly?: number;
   priceCookiePerFrequency?: number;
   priceCookieAsMonthly?: number;
-  stripePaymentIntentID?: StripePaymentIntentID;
 }
 
 export type UserRelationshipHash = string; // hash = [userID].sort().join("-")
@@ -272,3 +276,29 @@ export interface JournalEntry_Quantum {
   cookieQuantityDelta: number;
   updatedAt: TimestampFirestore;
 }
+
+export const convertFrequencySubscriptionToMonthly = (args: {
+  amount: number;
+  frequency: WishBuyFrequency;
+}) => {
+  // convert freqencies to monthly equivalent
+  const { amount, frequency } = args;
+  let monthlyAmount = 0;
+  switch (frequency) {
+    case WishBuyFrequency.DAILY:
+      monthlyAmount = amount * 30;
+      break;
+    case WishBuyFrequency.WEEKLY:
+      monthlyAmount = amount * 4.3;
+      break;
+    case WishBuyFrequency.MONTHLY:
+      monthlyAmount = amount;
+      break;
+    case WishBuyFrequency.ONE_TIME:
+      monthlyAmount = 0;
+      break;
+    default:
+      throw Error(`Invalid frequency ${frequency}`);
+  }
+  return Math.ceil(monthlyAmount);
+};
