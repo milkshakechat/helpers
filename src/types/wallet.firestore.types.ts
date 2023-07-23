@@ -153,6 +153,7 @@ export interface PurchaseMainfest_Firestore {
   buyerNote?: string;
   createdAt: TimestampFirestore;
   wishID: WishID; // index
+  thumbnail: string;
   // foriegn keys
   buyerUserID: UserID; // index
   sellerUserID: UserID; // index

@@ -72,6 +72,7 @@ export interface PostTransactionXCloudRequestBody {
   note: string;
   purchaseManifestID?: PurchaseMainfestID;
   attribution?: string;
+  thumbnail?: string;
   type: TransactionType;
   amount: number;
   senderWallet: WalletAliasID;
@@ -93,6 +94,7 @@ export interface PostTransactionXCloudRequestBody {
   topUpMetadata?: TxTopUpMetadata;
   cashOutMetadata?: TxCashOutMetadata;
   referenceID?: TxRefID;
+  sendPushNotif?: boolean;
 }
 export interface PostTransactionXCloudResponse {
   statusCode: 200;
