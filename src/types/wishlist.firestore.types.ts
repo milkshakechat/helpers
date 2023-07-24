@@ -52,6 +52,28 @@ export const WishBuyFrequencyPrettyPrint = (frequency: WishBuyFrequency) => {
   }
 };
 
+export const WishBuyFrequencyPrettyPrintShort = (
+  frequency: WishBuyFrequency
+) => {
+  switch (frequency) {
+    case WishBuyFrequency.ONE_TIME:
+      return "Once";
+      break;
+    case WishBuyFrequency.MONTHLY:
+      return "Monthly";
+      break;
+    case WishBuyFrequency.WEEKLY:
+      return "Weekly";
+      break;
+    case WishBuyFrequency.DAILY:
+      return "Daily";
+      break;
+    default:
+      return "";
+      break;
+  }
+};
+
 export const cookieToUSD = (cookies: number) => {
   const exchangeRate = 0.73 / 1;
   return parseFloat((cookies * exchangeRate).toFixed(2));
