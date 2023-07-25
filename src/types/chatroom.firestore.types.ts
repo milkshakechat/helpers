@@ -20,6 +20,8 @@ export enum ChatRoomParticipantStatus {
 
 export interface ChatRoom_Firestore {
   id: ChatRoomID;
+  title: string;
+  thumbnail: string;
   note: string;
   participants: {
     [key: UserID]: ChatRoomParticipantStatus;
