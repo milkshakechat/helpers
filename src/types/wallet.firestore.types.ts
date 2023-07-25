@@ -163,6 +163,7 @@ export interface PurchaseMainfest_Firestore {
   // wish details
   agreedCookiePrice: number;
   originalCookiePrice: number;
+  transactionType: TransactionType;
   // confirmation
   paymentComplete: boolean;
   referenceID: TxRefID;
