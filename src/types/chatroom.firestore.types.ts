@@ -20,6 +20,8 @@ export enum ChatRoomParticipantStatus {
 
 export interface ChatRoom_Firestore {
   id: ChatRoomID;
+  title: string;
+  thumbnail: string;
   note: string;
   participants: {
     [key: UserID]: ChatRoomParticipantStatus;
@@ -30,8 +32,8 @@ export interface ChatRoom_Firestore {
   // it allows us to quickly check in firestore if a chatroom exists between a set of users
   // this uses the userIDs to create a unique csv hash for the chatroom
   // it is possible to return more than 1 room
-  firestoreQuickCheckHash?: string;
-  firestoreParticipantSearch?: UserID[];
+  firestoreQuickCheckHash: string;
+  firestoreParticipantSearch: UserID[];
   // sendbird
   sendBirdChannelURL?: SendBirdChannelURL; // index
   sendBirdChannelType?: SendBirdChannelType;
