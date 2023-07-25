@@ -75,11 +75,11 @@ export const WishBuyFrequencyPrettyPrintShort = (
 };
 
 export const cookieToUSD = (cookies: number) => {
-  const exchangeRate = 0.73 / 1;
+  const exchangeRate = 1.17 / 1;
   return parseFloat((cookies * exchangeRate).toFixed(2));
 };
 export const usdToCookie = (usd: number) => {
-  const exchangeRate = 1 / 0.73;
+  const exchangeRate = 1 / 1.17;
   return Math.ceil(parseFloat((usd * exchangeRate).toFixed(2)));
 };
 
