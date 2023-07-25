@@ -99,7 +99,6 @@ export interface StoryInteraction_Firestore {
   viewed: UnixTimestampCSV; // unix timestamp csv
   swipeLike: UnixTimestampCSV; // unix timestamp csv
   swipeDislike: UnixTimestampCSV; // unix timestamp csv
-  initCheckout: UnixTimestampCSV; // unix timestamp csv
 }
 
 export const createStoryInteractionID = ({
