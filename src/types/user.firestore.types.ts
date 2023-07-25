@@ -58,6 +58,7 @@ export enum genderEnum {
 }
 
 export enum FriendshipStatus {
+  ACQUAINTANCE = "ACQUAINTANCE",
   SENT_REQUEST = "SENT_REQUEST",
   GOT_REQUEST = "GOT_REQUEST",
   ACCEPTED = "ACCEPTED",
@@ -70,6 +71,8 @@ export interface Friendship_Firestore {
   primaryUserID: UserID; // index
   friendID: UserID;
   friendNickname: string;
+  username: Username;
+  avatar: string;
   note: string;
   createdAt: TimestampFirestore;
   utmAttribution?: string;

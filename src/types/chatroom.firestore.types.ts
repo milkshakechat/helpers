@@ -24,11 +24,12 @@ export interface ChatRoom_Firestore {
   participants: {
     [key: UserID]: ChatRoomParticipantStatus;
   };
-  // WARNING! firestoreQuickCheckHash is only used for 1-on-1 chats
-  // it breaks when you are able to invite more people to a chatroom
+  // WARNING! firestoreQuickCheckHash changes based on participants
+  // search by quickCheckHash requires an exact string match based on all participants userIDs
   // firestoreQuickCheckHash is participantIDs.sort().join(",")
   // it allows us to quickly check in firestore if a chatroom exists between a set of users
   // this uses the userIDs to create a unique csv hash for the chatroom
+  // it is possible to return more than 1 room
   firestoreQuickCheckHash?: string;
   firestoreParticipantSearch?: UserID[];
   // sendbird
@@ -36,6 +37,10 @@ export interface ChatRoom_Firestore {
   sendBirdChannelType?: SendBirdChannelType;
   sendBirdPushNotifConfig?: SendBirdPushNotifConfig;
 }
+
+export const ChatRoomQuickCheckHashGen = (participants: UserID[]) => {
+  return participants.sort().join(",");
+};
 
 export interface SendBirdPushNotifConfig {
   [key: UserID]: SendBirdPushNotifConfig_User;
