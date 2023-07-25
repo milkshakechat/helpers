@@ -22,6 +22,9 @@ export type StoryID = string & {
 export type StoryAttachmentID = string & {
   readonly _: unique symbol;
 };
+export type StoryInteractionID = string & {
+  readonly _: unique symbol;
+};
 export type FriendshipID = string & {
   readonly _: unique symbol;
 };
@@ -121,8 +124,10 @@ export enum FirestoreCollection {
   NOTIFICATIONS = "notifications",
   FRIENDSHIPS = "friendships",
   CHAT_ROOMS = "chatRooms",
-  STORIES = "stories",
+
   WISH = "wish",
+  STORIES = "stories",
+  STORY_INTERACTIONS = "storyInteractions",
 
   // mirror wallet
   MIRROR_WALLETS = "mirrorWallets",

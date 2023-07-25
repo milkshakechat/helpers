@@ -7,6 +7,7 @@ import {
   Bucket_File_URL,
   WishID,
   Username,
+  StoryInteractionID,
 } from "./base.types";
 
 export type StoryHashtag = string; // #california_girls --> use isValidHashtag()
@@ -26,6 +27,9 @@ export interface Story_Firestore {
   // thumbnails
   thumbnail: Bucket_File_URL;
   showcaseThumbnail: Bucket_File_URL;
+  // wish
+  linkedWishID?: WishID;
+  allowSwipe: boolean;
   // visibility
   visibleAudienceGroups: AudienceGroupID[];
   visibleFriends: UserID[];
@@ -84,6 +88,28 @@ export type HLS_Stream_Manifest_URL = string; // https://storage.googleapis.com/
 //   createdAt: TimestampFirestore;
 //   sentViaSendbird: boolean;
 // }
+
+type UnixTimestampCSV = string;
+export interface StoryInteraction_Firestore {
+  id: StoryInteractionID; // index
+  storyID: StoryID; // index
+  authorID: UserID; // index
+  userID: UserID;
+  served: UnixTimestampCSV; // unix timestamp csv
+  viewed: UnixTimestampCSV; // unix timestamp csv
+  swipeLike: UnixTimestampCSV; // unix timestamp csv
+  swipeDislike: UnixTimestampCSV; // unix timestamp csv
+}
+
+export const createStoryInteractionID = ({
+  storyID,
+  userID,
+}: {
+  storyID: StoryID;
+  userID: UserID;
+}) => {
+  return `story_${storyID}_x_user_${userID}` as StoryInteractionID;
+};
 
 export interface AudienceGroup_Firestore {
   id: AudienceGroupID; // index
