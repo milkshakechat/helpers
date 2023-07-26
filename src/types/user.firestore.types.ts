@@ -40,6 +40,12 @@ export interface User_Firestore {
   stripeMetadata?: StripeMetadata_UserFirestore;
 }
 
+export interface MirrorPublicUser_Firestore {
+  id: UserID; // index
+  username: Username;
+  avatar: string;
+}
+
 // exists on User_Firestore
 export interface StripeMetadata_UserFirestore {
   // stripe foreign keys
