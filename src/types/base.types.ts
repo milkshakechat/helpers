@@ -79,6 +79,9 @@ export type StripeSubscriptionID = string & {
 export type StripePaymentMethodID = string & {
   readonly _: unique symbol;
 };
+export type ChatLogID = string & {
+  readonly _: unique symbol;
+};
 export type PushTokenID = string & {
   readonly _: unique symbol;
 };
@@ -123,9 +126,15 @@ export enum FirestoreCollection {
   PUSH_TOKENS = "pushTokens",
   NOTIFICATIONS = "notifications",
   FRIENDSHIPS = "friendships",
-  CHAT_ROOMS = "chatRooms",
 
+  // chats
+  CHAT_ROOMS = "chatRooms",
+  CHAT_LOGS = "chatLogs",
+
+  // wish
   WISH = "wish",
+
+  // story
   STORIES = "stories",
   STORY_INTERACTIONS = "storyInteractions",
 

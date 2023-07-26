@@ -28,6 +28,25 @@ export function getCompressedAvatarUrl({
   return newURL;
 }
 
+export function getCompressedGroupPhotoUrl({
+  userID,
+  assetID,
+  size = ImageResizeOption.thumbnail,
+  bucketName,
+}: {
+  userID: UserID;
+  assetID: string;
+  size?: ImageResizeOption;
+  bucketName: string;
+}): string {
+  const base = `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/`;
+  const path = encodeURIComponent(
+    `users/${userID}/chatroom/resized-media/${assetID}_${size}.jpeg`
+  );
+  const newURL = `${base}${path}?alt=media`;
+  return newURL;
+}
+
 export function getCompressedStickerUrl({
   userID,
   assetID,
