@@ -1,4 +1,5 @@
 import {
+  ChatLogID,
   ChatRoomID,
   SendBirdMessageID,
   TimestampFirestore,
@@ -8,6 +9,12 @@ import {
 export enum SendBirdChannelType {
   GROUP = "GROUP",
   OPEN = "OPEN",
+}
+
+export enum ChannelTypeEnum {
+  GROUP = "GROUP",
+  OPEN = "OPEN",
+  DIRECT = "DIRECT",
 }
 
 export type SendBirdChannelURL = string;
@@ -26,6 +33,7 @@ export interface ChatRoom_Firestore {
   participants: {
     [key: UserID]: ChatRoomParticipantStatus;
   };
+  type: ChannelTypeEnum;
   // WARNING! firestoreQuickCheckHash changes based on participants
   // search by quickCheckHash requires an exact string match based on all participants userIDs
   // firestoreQuickCheckHash is participantIDs.sort().join(",")
@@ -33,11 +41,23 @@ export interface ChatRoom_Firestore {
   // this uses the userIDs to create a unique csv hash for the chatroom
   // it is possible to return more than 1 room
   firestoreQuickCheckHash: string;
-  firestoreParticipantSearch: UserID[];
+  members: UserID[];
+  admins: UserID[];
   // sendbird
   sendBirdChannelURL?: SendBirdChannelURL; // index
   sendBirdChannelType?: SendBirdChannelType;
   sendBirdPushNotifConfig?: SendBirdPushNotifConfig;
+}
+
+export interface ChatLog_Firestore {
+  id: ChatLogID;
+  message: string;
+  userID: UserID;
+  avatar: string;
+  username: string;
+  chatRoomID: ChatRoomID;
+  readers: UserID[];
+  createdAt: TimestampFirestore;
 }
 
 export const ChatRoomQuickCheckHashGen = (participants: UserID[]) => {
