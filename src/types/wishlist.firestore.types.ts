@@ -75,13 +75,14 @@ export const WishBuyFrequencyPrettyPrintShort = (
 };
 
 export const cookieToUSD = (cookies: number) => {
-  const exchangeRate = 1.17 / 1;
+  const exchangeRate = 1.34 / 1;
   return parseFloat((cookies * exchangeRate).toFixed(2));
 };
 export const usdToCookie = (usd: number) => {
-  const exchangeRate = 1 / 1.17;
+  const exchangeRate = 1 / 1.34;
   return Math.ceil(parseFloat((usd * exchangeRate).toFixed(2)));
 };
+export const PREMIUM_CHAT_PRICE_COOKIES_MONTHLY = 1;
 
 export enum WishlistVisibility {
   PUBLIC_MARKETPLACE = "PUBLIC_MARKETPLACE",

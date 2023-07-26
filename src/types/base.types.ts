@@ -141,6 +141,7 @@ export enum FirestoreCollection {
   // mirror wallet
   MIRROR_WALLETS = "mirrorWallets",
   MIRROR_TX = "mirrorTx",
+  MIRROR_USER = "mirrorUsers",
 
   // shopping
   PURCHASE_MANIFESTS = "purchaseManifests",
@@ -160,3 +161,6 @@ export const placeholderSticker =
 
 export const placeholderWishlistGraphic =
   "https://firebasestorage.googleapis.com/v0/b/milkshake-dev-faf77.appspot.com/o/app-public-shared%2Fdefault_gift.jpeg?alt=media";
+
+export const milkshakeLogoCookie =
+  "https://firebasestorage.googleapis.com/v0/b/milkshake-dev-faf77.appspot.com/o/app-public-shared%2Fmilkshake_fcm_icon.jpg?alt=media";

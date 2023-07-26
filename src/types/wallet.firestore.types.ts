@@ -227,6 +227,7 @@ export enum TransactionType {
   TRANSFER = "TRANSFER", // when a user transfers cookies to another user
   TOP_UP = "TOP_UP", // when a user buys cookies from the house to top up their wallet
   CASH_OUT = "CASH_OUT", // when a user cashes out their cookies
+  PREMIUM_CHAT = "PREMIUM_CHAT", // when a user buys a premium chat
 }
 
 export interface TransactionMetadata {
