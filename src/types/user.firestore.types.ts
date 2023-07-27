@@ -44,6 +44,7 @@ export interface MirrorPublicUser_Firestore {
   id: UserID; // index
   username: Username;
   avatar: string;
+  hasPremiumChat: boolean;
 }
 
 // exists on User_Firestore
