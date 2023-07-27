@@ -1,4 +1,5 @@
 import {
+  ChatRoomID,
   PurchaseMainfestID,
   StripePaymentIntentID,
   TransactionID,
@@ -95,6 +96,7 @@ export interface PostTransactionXCloudRequestBody {
   cashOutMetadata?: TxCashOutMetadata;
   referenceID?: TxRefID;
   sendPushNotif?: boolean;
+  chatRoomID?: ChatRoomID;
 }
 export interface PostTransactionXCloudResponse {
   statusCode: 200;
@@ -124,6 +126,7 @@ export interface RecallTransactionXCloudRequestBody {
   recallerWalletID: WalletAliasID;
   recallerNote: string;
   referenceID?: TxRefID;
+  chatRoomID?: ChatRoomID;
 }
 export interface RecallTransactionXCloudResponse {
   statusCode: 200;

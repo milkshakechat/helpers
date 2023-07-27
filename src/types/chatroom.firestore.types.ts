@@ -72,3 +72,42 @@ export interface SendBirdPushNotifConfig_User {
   snoozeUntil: TimestampFirestore; // timestamp
   allowPush: boolean;
 }
+
+export interface PartialSendbirdChannel {
+  name: string;
+  channel_url: string;
+  cover_url: string;
+  custom_type: string;
+  unread_message_count: number;
+  data: any;
+  is_distinct: boolean;
+  is_public: boolean;
+  is_super: boolean;
+  is_ephemeral: boolean;
+  is_access_code_required: boolean;
+  member_count: number;
+  joined_member_count: number;
+  unread_mention_count: number;
+  created_by: {
+    user_id: string;
+    nickname: string;
+    profile_url: string;
+    require_auth_for_profile_image: boolean;
+  };
+  members: {
+    user_id: string;
+    nickname: string;
+    profile_url: string;
+    is_active: boolean;
+    is_online: boolean;
+    last_seen_at: number;
+    state: string;
+  }[];
+  last_message: any;
+  message_survival_seconds: number;
+  max_length_message: number;
+  created_at: number;
+  freeze: boolean;
+}
+
+export const SYSTEM_MESSAGE_USER_ID = "Groupchat";

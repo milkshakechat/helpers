@@ -21,6 +21,7 @@ import {
   StripeProductID,
   StripePriceID,
   StripeSubItemID,
+  ChatRoomID,
 } from "./base.types";
 import { WishBuyFrequency } from "./wishlist.firestore.types";
 import { v4 as uuidv4 } from "uuid";
@@ -186,6 +187,8 @@ export interface PurchaseMainfest_Firestore {
   priceUSDBasisAsMonthly?: number;
   priceCookiePerFrequency?: number;
   priceCookieAsMonthly?: number;
+  // social
+  chatRoomID?: ChatRoomID;
 }
 
 export type UserRelationshipHash = string; // hash = [userID].sort().join("-")
