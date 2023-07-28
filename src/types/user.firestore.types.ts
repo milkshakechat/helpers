@@ -11,6 +11,7 @@ import {
   StripeSubscriptionID,
   StripeMerchantID,
   StripePaymentMethodID,
+  MockUserGenesisID,
 } from "./base.types";
 
 export interface User_Firestore {
@@ -38,6 +39,7 @@ export interface User_Firestore {
   usernameLastUpdated: TimestampFirestore;
   sendBirdAccessToken?: SendBirdAccessToken;
   stripeMetadata?: StripeMetadata_UserFirestore;
+  isMockUser?: boolean;
 }
 
 export interface MirrorPublicUser_Firestore {
@@ -45,6 +47,14 @@ export interface MirrorPublicUser_Firestore {
   username: Username;
   avatar: string;
   hasPremiumChat: boolean;
+}
+
+export interface MockUser_Firestore {
+  id: UserID; // index
+  email: string;
+  password: string;
+  genesisID: MockUserGenesisID;
+  lastKnownToken?: string;
 }
 
 // exists on User_Firestore

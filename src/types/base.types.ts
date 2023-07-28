@@ -4,6 +4,9 @@ export type UserID = string & {
 export type SendBirdUserID = string & {
   readonly _: unique symbol;
 };
+export type MockUserGenesisID = string & {
+  readonly _: unique symbol;
+};
 export type WalletID = string & {
   readonly _: unique symbol;
 };
@@ -145,6 +148,9 @@ export enum FirestoreCollection {
 
   // shopping
   PURCHASE_MANIFESTS = "purchaseManifests",
+
+  // mock
+  MOCK_USERS = "mockUsers",
 }
 
 export const placeholderVideoThumbnail =
