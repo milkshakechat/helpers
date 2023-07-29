@@ -12,34 +12,54 @@ import {
   StripeMerchantID,
   StripePaymentMethodID,
   MockUserGenesisID,
+  GeoInfo,
+  GoogleMapsPlaceID,
+  GeoFireX,
 } from "./base.types";
+import { CurrencyEnum } from "./wallet.firestore.types";
+import { GeoPoint } from "firebase-admin/firestore";
 
 export interface User_Firestore {
   id: UserID; // index
   username: Username; // index
+  // basic
   displayName: string;
   bio: string;
-  email: string;
-  phone: string;
   avatar: string;
   link: string;
-  isCreator: boolean;
+  createdAt: TimestampFirestore;
+  // contact
+  email: string;
+  phone: string;
+  // wallet
   tradingWallet: WalletAliasID;
   escrowWallet: WalletAliasID;
+  // sendbird
   sendBirdUserID?: SendBirdUserID;
-  createdAt: TimestampFirestore;
   isPaidChat: boolean;
   isPaidChatUntil?: TimestampFirestore;
-  disabled: boolean;
+  sendBirdAccessToken?: SendBirdAccessToken;
+  // settings
   privacyMode: privacyModeEnum;
   themeColor: ThemeColorHex;
   language: localeEnum;
+  usernameLastUpdated: TimestampFirestore;
+  // interests
   gender: genderEnum;
   interestedIn: genderEnum[];
-  usernameLastUpdated: TimestampFirestore;
-  sendBirdAccessToken?: SendBirdAccessToken;
+  prefAboutMe: string;
+  prefLookingFor: string;
+  prefGeoBias: Boolean;
+  // banking
+  isCreator: boolean;
+  currency?: CurrencyEnum;
   stripeMetadata?: StripeMetadata_UserFirestore;
+  // geolocation
+  geoInfo?: GeoInfo;
+  geoFireX?: GeoFireX;
+  // internal admin
   isMockUser?: boolean;
+  disabled: boolean;
 }
 
 export interface MirrorPublicUser_Firestore {
@@ -52,6 +72,7 @@ export interface MirrorPublicUser_Firestore {
 export interface MockUser_Firestore {
   id: UserID; // index
   email: string;
+  username: Username;
   password: string;
   genesisID: MockUserGenesisID;
   lastKnownToken?: string;

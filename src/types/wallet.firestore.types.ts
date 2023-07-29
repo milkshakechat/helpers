@@ -96,12 +96,16 @@ export interface CardCharge_Firestore {
   userID: UserID; // index
   stripeCustomerID?: StripeCustomerID;
   amount: number;
-  currency: string;
+  currency: CurrencyEnum;
   source: string;
   createdAt: TimestampFirestore;
   wishDealSnapshot: PurchaseMainfestID[];
   stripePaymentIntentID?: StripePaymentIntentID;
   stripeSubscriptionID?: StripeSubscriptionID;
+}
+
+export enum CurrencyEnum {
+  USD = "USD",
 }
 
 // used for frontend to show realtime wallet balances

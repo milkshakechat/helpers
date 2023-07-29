@@ -8,7 +8,11 @@ import {
   WishID,
   Username,
   StoryInteractionID,
+  GeoInfo,
+  GoogleMapsPlaceID,
+  GeoFireX,
 } from "./base.types";
+import { GeoPoint } from "firebase-admin/firestore";
 
 export type StoryHashtag = string; // #california_girls --> use isValidHashtag()
 export interface Story_Firestore {
@@ -42,21 +46,15 @@ export interface Story_Firestore {
   mentionedWishlists: WishID[];
   // duration
   expiresAt: TimestampFirestore;
-  // location
-  location?: StoryLocation;
+  // geolocation
+  geoInfo?: GeoInfo;
+  geoFireX?: GeoFireX;
   // outbound link to internet (call to action)
   outboundLink?: string;
   // metadata
   processingComplete: boolean;
   createdAt: TimestampFirestore;
   deleted: boolean;
-}
-
-export interface StoryLocation {
-  title: string;
-  url?: string;
-  latitude?: number;
-  longitude?: number;
 }
 
 export interface StoryAttachment_Firestore {

@@ -115,14 +115,28 @@ export type StripePriceID = string & {
 export type StripeSubItemID = string & {
   readonly _: unique symbol;
 };
+export type GoogleMapsPlaceID = string & {
+  readonly _: unique symbol;
+};
 
 export type EmailString = string;
 export type Bucket_File_URL = string;
 
 export type ThemeColorHex = string;
 
-import { FieldValue, Timestamp } from "firebase-admin/firestore";
+import { FieldValue, Timestamp, GeoPoint } from "firebase-admin/firestore";
 export type TimestampFirestore = FieldValue | Timestamp;
+
+export interface GeoInfo {
+  title: string;
+  lat: number;
+  lng: number;
+  placeID?: GoogleMapsPlaceID;
+}
+export interface GeoFireX {
+  geohash: string;
+  geopoint: GeoPoint;
+}
 
 export enum FirestoreCollection {
   USERS = "users",
