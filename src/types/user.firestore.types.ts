@@ -122,13 +122,28 @@ export interface Friendship_Firestore {
 export enum localeEnum {
   english = "english",
   japanese = "japanese",
-  spanish = "spanish",
-  arabic = "arabic",
   korean = "korean",
+  french = "french",
+  arabic = "arabic",
+  german = "german",
+  italian = "italian",
+
+  spanish = "spanish",
   chinese = "chinese",
+  hindi = "hindi",
+  polish = "polish",
+  turkish = "turkish",
+
   thai = "thai",
   vietnamese = "vietnamese",
-  // russian = "russian",
+  russian = "russian",
+  portuguese = "portuguese",
+  tagalog = "tagalog",
+  indonesian = "indonesian",
+  ukrainian = "ukrainian",
+  bengali = "bengali",
+  malaysian = "malaysian",
+  urdu = "urdu",
 }
 
 export enum privacyModeEnum {
