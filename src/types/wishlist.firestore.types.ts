@@ -1,5 +1,8 @@
 import {
   OwnedStickerID,
+  RecurlyItemID,
+  RecurlyPlanAddOnCode,
+  RecurlyPlanAddOnID,
   StickerSaleID,
   StripePriceID,
   StripeProductID,
@@ -115,6 +118,10 @@ export interface Wish_Firestore {
   externalURL?: string;
   // stripe
   stripeProductID?: StripeProductID;
+  // recurly
+  recurlyItemID?: RecurlyItemID;
+  recurlyPlanAddOnID?: RecurlyPlanAddOnID;
+  RecurlyPlanAddOnCode?: RecurlyPlanAddOnCode;
 }
 
 // export interface OwnedSticker_Firestore {

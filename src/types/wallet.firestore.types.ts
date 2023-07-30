@@ -22,6 +22,11 @@ import {
   StripePriceID,
   StripeSubItemID,
   ChatRoomID,
+  RecurlyPlanAddOnID,
+  RecurlySubscriptionID,
+  RecurlyChargeID,
+  RecurlyPlanAddOnCode,
+  RecurlySubscriptionAddOnID,
 } from "./base.types";
 import { WishBuyFrequency } from "./wishlist.firestore.types";
 import { v4 as uuidv4 } from "uuid";
@@ -182,6 +187,8 @@ export interface PurchaseMainfest_Firestore {
   isCancelled: boolean;
   cancelledAt?: TimestampFirestore;
   cancelledBy?: UserID;
+  // social
+  chatRoomID?: ChatRoomID;
   // stripe
   stripeProductID?: StripeProductID;
   stripePriceID?: StripePriceID;
@@ -191,8 +198,12 @@ export interface PurchaseMainfest_Firestore {
   priceUSDBasisAsMonthly?: number;
   priceCookiePerFrequency?: number;
   priceCookieAsMonthly?: number;
-  // social
-  chatRoomID?: ChatRoomID;
+  // recurly
+  recurlySubscriptionID?: RecurlySubscriptionID;
+  recurlySubscriptionAddOnID?: RecurlySubscriptionAddOnID;
+  recurlyPlanAddOnID?: RecurlyPlanAddOnID;
+  recurlyPlanAddOnCode?: RecurlyPlanAddOnCode;
+  recurlyChargeID?: RecurlyChargeID;
 }
 
 export type UserRelationshipHash = string; // hash = [userID].sort().join("-")

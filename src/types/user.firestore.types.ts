@@ -15,6 +15,10 @@ import {
   GeoInfo,
   GoogleMapsPlaceID,
   GeoFireX,
+  RecurlySubscriptionID,
+  RecurlyPlanID,
+  RecurlyCustomerAccountID,
+  RecurlyCustomerAccountCode,
 } from "./base.types";
 import { CurrencyEnum } from "./wallet.firestore.types";
 import { GeoPoint } from "firebase-admin/firestore";
@@ -54,6 +58,7 @@ export interface User_Firestore {
   isCreator: boolean;
   currency?: CurrencyEnum;
   stripeMetadata?: StripeMetadata_UserFirestore;
+  recurlyMetadata: RecurlyMetadata_UserFirestore;
   // geolocation
   geoInfo?: GeoInfo;
   geoFireX?: GeoFireX;
@@ -88,6 +93,12 @@ export interface StripeMetadata_UserFirestore {
   defaultPaymentMethodID?: StripePaymentMethodID;
 }
 
+export interface RecurlyMetadata_UserFirestore {
+  recurlyCustomerAccountID: RecurlyCustomerAccountID;
+  recurlyCustomerAccountCode: RecurlyCustomerAccountCode;
+  recurlyCreatorPlanID: RecurlyPlanID;
+}
+
 export enum genderEnum {
   male = "male",
   female = "female",
@@ -117,6 +128,7 @@ export interface Friendship_Firestore {
   status: FriendshipStatus;
   initiatedBy: UserID;
   requestNonce: number;
+  subscriptionID?: RecurlySubscriptionID;
 }
 
 export enum localeEnum {
