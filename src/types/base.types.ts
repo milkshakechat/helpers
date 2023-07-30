@@ -119,6 +119,31 @@ export type GoogleMapsPlaceID = string & {
   readonly _: unique symbol;
 };
 
+export type RecurlyCustomerAccountCode = UserID;
+export type RecurlyCustomerAccountID = string & {
+  readonly _: unique symbol;
+};
+export type RecurlyPlanID = string & {
+  readonly _: unique symbol;
+};
+export type RecurlyPlanCode = string | UserID;
+export type RecurlyItemID = string & {
+  readonly _: unique symbol;
+};
+export type RecurlyPlanAddOnID = string & {
+  readonly _: unique symbol;
+};
+export type RecurlyPlanAddOnCode = string;
+export type RecurlySubscriptionID = string & {
+  readonly _: unique symbol;
+};
+export type RecurlySubscriptionAddOnID = string & {
+  readonly _: unique symbol;
+};
+export type RecurlyChargeID = string & {
+  readonly _: unique symbol;
+};
+
 export type EmailString = string;
 export type Bucket_File_URL = string;
 
@@ -184,3 +209,6 @@ export const placeholderWishlistGraphic =
 
 export const milkshakeLogoCookie =
   "https://firebasestorage.googleapis.com/v0/b/milkshake-dev-faf77.appspot.com/o/app-public-shared%2Fmilkshake_fcm_icon.jpg?alt=media";
+
+export const paymentCardsVisual =
+  "https://firebasestorage.googleapis.com/v0/b/milkshake-dev-faf77.appspot.com/o/app-public-shared%2Fpayment-cards.jpg?alt=media";
