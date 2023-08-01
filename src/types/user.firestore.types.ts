@@ -16,8 +16,8 @@ import {
   GoogleMapsPlaceID,
   GeoFireX,
 } from "./base.types";
-import { CurrencyEnum } from "./wallet.firestore.types";
 import { GeoPoint } from "firebase-admin/firestore";
+import { CurrencyEnum } from "./wallet.firestore.types";
 
 export interface User_Firestore {
   id: UserID; // index
