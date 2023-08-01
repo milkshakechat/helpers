@@ -23,6 +23,7 @@ import {
   StripeSubItemID,
   ChatRoomID,
 } from "./base.types";
+import { localeEnum } from "./user.firestore.types";
 import { WishBuyFrequency } from "./wishlist.firestore.types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -102,10 +103,6 @@ export interface CardCharge_Firestore {
   wishDealSnapshot: PurchaseMainfestID[];
   stripePaymentIntentID?: StripePaymentIntentID;
   stripeSubscriptionID?: StripeSubscriptionID;
-}
-
-export enum CurrencyEnum {
-  USD = "USD",
 }
 
 // used for frontend to show realtime wallet balances
@@ -311,4 +308,321 @@ export const convertFrequencySubscriptionToMonthly = (args: {
       throw Error(`Invalid frequency ${frequency}`);
   }
   return Math.ceil(monthlyAmount);
+};
+
+export enum CurrencyEnum {
+  USD = "USD",
+  EUR = "EUR",
+  JPY = "JPY",
+  GBP = "GBP",
+  AUD = "AUD",
+  CAD = "CAD",
+  ARS = "ARS",
+  BHD = "BHD",
+  BRL = "BRL",
+  CLP = "CLP",
+  CNY = "CNY",
+  COP = "COP",
+  EGP = "EGP",
+  HKD = "HKD",
+  INR = "INR",
+  IDR = "IDR",
+  ILS = "ILS",
+  KES = "KES",
+  KRW = "KRW",
+  CHF = "CHF",
+  MYR = "MYR",
+  MXN = "MXN",
+  NZD = "NZD",
+  NGN = "NGN",
+  PKR = "PKR",
+  PHP = "PHP",
+  QAR = "QAR",
+  RUB = "RUB",
+  SAR = "SAR",
+  SGD = "SGD",
+  THB = "THB",
+  ZAR = "ZAR",
+  NTD = "NTD",
+  TRY = "TRY",
+  UAH = "UAH",
+  AED = "AED",
+  VND = "VND",
+  PLN = "PLN",
+  BDT = "BDT",
+}
+
+export const mapCurrencyEnumToName: Record<CurrencyEnum, string> = {
+  [CurrencyEnum.USD]: "$ US Dollar",
+  [CurrencyEnum.EUR]: "€ Euro",
+  [CurrencyEnum.JPY]: "¥ Japanese Yen",
+  [CurrencyEnum.GBP]: "£ British Pound",
+  [CurrencyEnum.AUD]: "$ Australian Dollar",
+  [CurrencyEnum.CAD]: "$ Canadian Dollar",
+  [CurrencyEnum.ARS]: "$ Argentine Peso",
+  [CurrencyEnum.BHD]: "BHD Bahraini Dinar",
+  [CurrencyEnum.BRL]: "R$ Brazilian Real",
+  [CurrencyEnum.CLP]: "$ Chilean Peso",
+  [CurrencyEnum.CNY]: "¥ Chinese Yuan",
+  [CurrencyEnum.COP]: "$ Colombian Peso",
+  [CurrencyEnum.EGP]: "EGP Egyptian Pound",
+  [CurrencyEnum.HKD]: "$ Hong Kong Dollar",
+  [CurrencyEnum.INR]: "₹ Indian Rupee",
+  [CurrencyEnum.IDR]: "Rp Indonesian Rupiah",
+  [CurrencyEnum.ILS]: "₪ Israeli New Shekel",
+  [CurrencyEnum.KES]: "KES Kenyan Shilling",
+  [CurrencyEnum.KRW]: "₩ South Korean Won",
+  [CurrencyEnum.CHF]: "CHF Swiss Franc",
+  [CurrencyEnum.MYR]: "RM Malaysian Ringgit",
+  [CurrencyEnum.MXN]: "$ Mexican Peso",
+  [CurrencyEnum.NZD]: "$ New Zealand Dollar",
+  [CurrencyEnum.NGN]: "₦ Nigerian Naira",
+  [CurrencyEnum.PKR]: "₨ Pakistani Rupee",
+  [CurrencyEnum.PHP]: "₱ Philippine Peso",
+  [CurrencyEnum.QAR]: "QAR Qatari Riyal",
+  [CurrencyEnum.RUB]: "₽ Russian Ruble",
+  [CurrencyEnum.SAR]: "SAR Saudi Riyal",
+  [CurrencyEnum.SGD]: "$ Singapore Dollar",
+  [CurrencyEnum.THB]: "฿ Thai Baht",
+  [CurrencyEnum.ZAR]: "ZAR South African Rand",
+  [CurrencyEnum.NTD]: "NT$ New Taiwan Dollar",
+  [CurrencyEnum.TRY]: "TRY Turkish Lira",
+  [CurrencyEnum.UAH]: "₴ Ukrainian Hryvnia",
+  [CurrencyEnum.AED]: "AED United Arab Emirates Dirham",
+  [CurrencyEnum.VND]: "₫ Vietnamese Dong",
+  [CurrencyEnum.PLN]: "PLN Polish Zloty",
+  [CurrencyEnum.BDT]: "BDT Bangladeshi Taka",
+};
+
+export const mapLanguageLocalToAssumedCurrency = (lang: localeEnum) => {
+  switch (lang) {
+    case localeEnum.english:
+      return CurrencyEnum.USD;
+    case localeEnum.japanese:
+      return CurrencyEnum.JPY;
+    case localeEnum.korean:
+      return CurrencyEnum.KRW;
+    case localeEnum.french:
+      return CurrencyEnum.EUR;
+    case localeEnum.arabic:
+      return CurrencyEnum.AED;
+    case localeEnum.german:
+      return CurrencyEnum.EUR;
+    case localeEnum.italian:
+      return CurrencyEnum.EUR;
+    case localeEnum.spanish:
+      return CurrencyEnum.MXN;
+    case localeEnum.chinese:
+      return CurrencyEnum.CNY;
+    case localeEnum.hindi:
+      return CurrencyEnum.INR;
+    case localeEnum.polish:
+      return CurrencyEnum.PLN;
+    case localeEnum.turkish:
+      return CurrencyEnum.TRY;
+    case localeEnum.thai:
+      return CurrencyEnum.THB;
+    case localeEnum.vietnamese:
+      return CurrencyEnum.VND;
+    case localeEnum.russian:
+      return CurrencyEnum.RUB;
+    case localeEnum.portuguese:
+      return CurrencyEnum.BRL;
+    case localeEnum.tagalog:
+      return CurrencyEnum.PHP;
+    case localeEnum.indonesian:
+      return CurrencyEnum.IDR;
+    case localeEnum.ukrainian:
+      return CurrencyEnum.UAH;
+    case localeEnum.bengali:
+      return CurrencyEnum.BDT;
+    case localeEnum.malaysian:
+      return CurrencyEnum.MYR;
+    case localeEnum.urdu:
+      return CurrencyEnum.PKR;
+    default:
+      return CurrencyEnum.USD;
+  }
+};
+
+export const mapCurrencyEnumToSymbol = (curr: CurrencyEnum) => {
+  switch (curr) {
+    case CurrencyEnum.USD:
+      return "$";
+    case CurrencyEnum.EUR:
+      return "€";
+    case CurrencyEnum.JPY:
+      return "¥";
+    case CurrencyEnum.GBP:
+      return "£";
+    case CurrencyEnum.AUD:
+      return "$";
+    case CurrencyEnum.CAD:
+      return "$";
+    case CurrencyEnum.ARS:
+      return "$";
+    case CurrencyEnum.BHD:
+      return "";
+    case CurrencyEnum.BRL:
+      return "R$";
+    case CurrencyEnum.CLP:
+      return "$";
+    case CurrencyEnum.CNY:
+      return "¥";
+    case CurrencyEnum.COP:
+      return "$";
+    case CurrencyEnum.EGP:
+      return "";
+    case CurrencyEnum.HKD:
+      return "$";
+    case CurrencyEnum.INR:
+      return "₹";
+    case CurrencyEnum.IDR:
+      return "Rp";
+    case CurrencyEnum.ILS:
+      return "₪";
+    case CurrencyEnum.KES:
+      return "";
+    case CurrencyEnum.KRW:
+      return "₩";
+    case CurrencyEnum.CHF:
+      return "";
+    case CurrencyEnum.MYR:
+      return "RM";
+    case CurrencyEnum.MXN:
+      return "$";
+    case CurrencyEnum.NZD:
+      return "$";
+    case CurrencyEnum.NGN:
+      return "₦";
+    case CurrencyEnum.PKR:
+      return "₨";
+    case CurrencyEnum.PHP:
+      return "₱";
+    case CurrencyEnum.QAR:
+      return "";
+    case CurrencyEnum.RUB:
+      return "₽";
+    case CurrencyEnum.SAR:
+      return "";
+    case CurrencyEnum.SGD:
+      return "$";
+    case CurrencyEnum.THB:
+      return "฿";
+    case CurrencyEnum.ZAR:
+      return "";
+    case CurrencyEnum.NTD:
+      return "$";
+    case CurrencyEnum.TRY:
+      return "";
+    case CurrencyEnum.UAH:
+      return "₴";
+    case CurrencyEnum.AED:
+      return "";
+    case CurrencyEnum.VND:
+      return "₫";
+    case CurrencyEnum.PLN:
+      return "";
+    case CurrencyEnum.BDT:
+      return "";
+    default:
+      return "";
+  }
+};
+
+export const currencyEnumToDecimalPlaces = (curr: CurrencyEnum) => {
+  switch (curr) {
+    case CurrencyEnum.USD:
+      return 2;
+    case CurrencyEnum.EUR:
+      return 2;
+    case CurrencyEnum.JPY:
+      return 0;
+    case CurrencyEnum.GBP:
+      return 2;
+    case CurrencyEnum.AUD:
+      return 2;
+    case CurrencyEnum.CAD:
+      return 2;
+    case CurrencyEnum.ARS:
+      return 2;
+    case CurrencyEnum.BHD:
+      return 2;
+    case CurrencyEnum.BRL:
+      return 2;
+    case CurrencyEnum.CLP:
+      return 0;
+    case CurrencyEnum.CNY:
+      return 0;
+    case CurrencyEnum.COP:
+      return 1;
+    case CurrencyEnum.EGP:
+      return 1;
+    case CurrencyEnum.HKD:
+      return 1;
+    case CurrencyEnum.INR:
+      return 0;
+    case CurrencyEnum.IDR:
+      return 0;
+    case CurrencyEnum.ILS:
+      return 1;
+    case CurrencyEnum.KES:
+      return 1;
+    case CurrencyEnum.KRW:
+      return 0;
+    case CurrencyEnum.CHF:
+      return 1;
+    case CurrencyEnum.MYR:
+      return 0;
+    case CurrencyEnum.MXN:
+      return 1;
+    case CurrencyEnum.NZD:
+      return 2;
+    case CurrencyEnum.NGN:
+      return 0;
+    case CurrencyEnum.PKR:
+      return 0;
+    case CurrencyEnum.PHP:
+      return 0;
+    case CurrencyEnum.QAR:
+      return 2;
+    case CurrencyEnum.RUB:
+      return 0;
+    case CurrencyEnum.SAR:
+      return 2;
+    case CurrencyEnum.SGD:
+      return 2;
+    case CurrencyEnum.THB:
+      return 0;
+    case CurrencyEnum.ZAR:
+      return 0;
+    case CurrencyEnum.NTD:
+      return 0;
+    case CurrencyEnum.TRY:
+      return 0;
+    case CurrencyEnum.UAH:
+      return 0;
+    case CurrencyEnum.AED:
+      return 2;
+    case CurrencyEnum.VND:
+      return 0;
+    case CurrencyEnum.PLN:
+      return 2;
+    case CurrencyEnum.BDT:
+      return 2;
+    default:
+      return 2;
+  }
+};
+
+export const fxFromUSDToCurrency = ({
+  amount,
+  fxRate,
+  currency,
+}: {
+  amount: number;
+  fxRate: number;
+  currency: CurrencyEnum;
+}) => {
+  return (amount * fxRate).toFixed(currencyEnumToDecimalPlaces(currency));
 };
