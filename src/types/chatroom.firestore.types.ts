@@ -48,7 +48,9 @@ export interface ChatRoom_Firestore {
   sendBirdChannelType?: SendBirdChannelType;
   sendBirdPushNotifConfig?: SendBirdPushNotifConfig;
   // free chat
-  freeChatPreview?: string;
+  chatPreview?: string;
+  // last updated
+  lastUpdated: TimestampFirestore;
 }
 
 export interface ChatLog_Firestore {
