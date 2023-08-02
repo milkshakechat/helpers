@@ -140,6 +140,7 @@ export interface Tx_MirrorFireLedger {
   recallTransactionID?: MirrorTransactionID;
   cashOutTransactionID?: MirrorTransactionID;
   referenceID?: TxRefID;
+  isPermaTransfer?: boolean;
 }
 
 // a log of every wish bought/sold by a user
@@ -223,6 +224,7 @@ export interface Transaction_Quantum {
   recallTransactionID?: TransactionID;
   cashOutTransactionID?: TransactionID;
   metadata: TransactionMetadata;
+  isPermaTransfer?: boolean;
 }
 
 export enum TransactionType {
@@ -261,6 +263,7 @@ export interface TxRecallMetadata {
 
 export interface TxTransferMetadata {
   senderNote: string;
+  isPermaTransfer?: boolean;
 }
 
 export interface TxTopUpMetadata {
