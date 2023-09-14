@@ -4,7 +4,9 @@ Helper functions and types to asset with Milkshake software development
 
 
 
-https://github.com/milkshakechat/helpers/assets/96885027/7ff1c522-535d-47d2-a20c-673d974a272c
+https://www.youtube.com/shorts/GJWhyiDRjOk
+
+[video](https://github.com/milkshakechat/milkshake/assets/96885027/6a80b351-9409-49ca-a729-2d9bc3dddefd)
 
 
 
