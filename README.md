@@ -4,10 +4,14 @@ Helper functions and types to asset with Milkshake software development
 
 
 
-https://www.youtube.com/shorts/GJWhyiDRjOk
+https://www.youtube.com/shorts/6v9QNVE7WPQ
 
 
-[video](https://github.com/milkshakechat/milkshake/assets/96885027/6a80b351-9409-49ca-a729-2d9bc3dddefd)
+
+
+
+https://github.com/milkshakechat/helpers/assets/96885027/0ddec8b9-4f28-430d-8472-547a59b367b7
+
 
 
 
